@@ -1,0 +1,105 @@
+<footer class="footer">
+    <div class="container">
+        {% if site.jaytch.footer.col4 %}
+            {% assign numCols = 4 %}
+        {% elsif site.jaytch.footer.col3 %}
+            {% assign numCols = 3 %}
+        {% elsif site.jaytch.footer.col2 %}
+            {% assign numCols = 2 %}
+        {% elsif site.jaytch.footer.col1 %}
+            {% assign numCols = 1 %}
+        {% else %}
+            {% assign numCols = 1 %}
+        {% endif %}
+
+        {% assign colCount = site.jaytch.footer | size %}
+        {% assign year = site.time | date: "%Y" %}
+
+        {% case colCount %}
+        {% when 1 %}
+            {% assign colClass = "col-md-12" %}
+        {% when 2 %}
+            {% assign colClass = "col-md-6" %}
+        {% when 3 %}
+            {% assign colClass = "col-md-4" %}
+        {% when 4 %}
+            {% assign colClass = "col-md-3" %}
+        {% when 6 %}
+            {% assign colClass = "col-md-2" %}
+        {% when 12 %}
+            {% assign colClass = "col-md-1" %}
+        {% else %}
+            {% assign colClass = "col-md-12" %}
+        {% endcase %}
+
+        <div class="row">
+            {% for col in site.jaytch.footer %}
+            <div class="{{ colClass }}">
+                {% assign parts = col[1] | split: "|" %}
+                <h3>{{ parts[0] }}</h3>
+                <p>
+                    {% for part in parts %}
+                        {% unless forloop.first %}
+                            {{ part | replace: "%year%", year }}
+                            {% unless forloop.last %}<br/>{% endunless %}
+                        {% endunless %}
+                    {% endfor %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center text-muted"><hr/>Last build on {{ site.time | date: "%A, %B %-d, %Y" }}.</div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% include jaytch/asset-path.liquid file='js/vendor/jquery.min.js' %}"></script>
+<script src="{% include jaytch/asset-path.liquid file='js/bootstrap.min.js' %}"></script>
+<!--<script src="../../assets/js/docs.min.js"></script>-->
+
+<!--&lt;!&ndash; IE10 viewport hack for Surface/desktop Windows 8 bug &ndash;&gt;-->
+<!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+
+<script src="{{ site.baseurl }}/assets/script/queryString.js"></script>
+{% include jaytch/snips/search-script.liquid %}
+{% include jaytch/snips/countdown-script.liquid %}
+
+<script src="{{ site.baseurl }}/assets/script/googleplusfeed2/jquery.kyco.googleplusfeed2.min.js"></script>
+<script type="text/javascript">
+    // init google plus sidebar widget(s), if any are present
+    $(document).ready(function(){
+        $('.googleplusfeed').each(function(){
+            var id = $(this).text();
+            $(this).text("");
+            $(this).kycoGooglePlusFeed2(id);
+        });
+    });
+
+    if(typeof renderCountdowns !== 'undefined') {
+        $(document).ready(function(){
+            setInterval(renderCountdowns, 1000);
+        });
+    }
+
+    if(typeof whenGalleryReady !== 'undefined') {
+        $(document).ready(function(){
+            whenGalleryReady();
+        });
+    }
+
+    if(typeof whenDocumentReady !== 'undefined') {
+        $(document).ready(function(){
+            whenDocumentReady();
+        });
+    }
+
+    $(".currentYear").text(new Date().getFullYear());
+</script>
+
+

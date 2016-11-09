@@ -1,0 +1,162 @@
+<html>
+	<head>
+		<style type="text/css">
+			table tr th {
+				text-align:center;
+				border-bottom: 1px solid #000;
+			}
+			table tr td {
+				text-align:center;
+				vertical-align:middle;
+			}
+			.icon-checked   { 
+				width:22px; height:18px; line-height:18px;
+				display:inline-block;
+				background-image:url('glyphicons_152_check.png'); 
+			}
+			.icon-unchecked { 
+				width:22px; height:18px; line-height:18px;
+				display:inline-block;
+				background-image:url('glyphicons_153_unchecked.png'); 
+			}
+			.super {
+				position: relative;
+				bottom: 0.5em;
+				font-size: 0.8em;
+			}
+			/*
+			.cost
+			{
+				text-align:right;
+			}
+			*/
+			tr.notes td
+			{
+				text-align:left;
+			}
+			tr.footer td
+			{
+				border-top:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="0" cellpadding="5px" cellspacing="0">
+			<tr>
+				<th>&nbsp;</th>
+				<th>Windows</th>
+				<th>Win 8</th>
+				<th>WP8</th>
+				<th>OS X</th>
+				<th>Linux</th>
+				<th>iOS</th>
+				<th>Android</th>
+				<th>OUYA</th>
+				<th>PS Vita</th>
+				<th>IDE Cost</th>
+			</tr>
+			<tr>
+				<td>MonoDevelop<br/>Linux</td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td>Free</td>
+			</tr>
+			<tr>
+				<td>Visual Studio .NET<br/>Windows <span class="super">3</span></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td>$0 - $1199</td>
+			</tr>
+			<tr>
+				<td>Xamarin Studio<br/>Windows</td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td>Free <span class="super">4</span></td>
+			</tr>
+			<tr>
+				<td>Xamarin Studio<br/>Mac OS X</td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td>Free <span class="super">4</span></td>
+			</tr>
+			<tr>
+				<td>PSM Studio<br/>Windows</td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-unchecked"></i></td>
+				<td><i class="icon-checked"></i></td>
+				<td>Free</td>
+			</tr>
+			<tr class="footer">
+				<td>Framework<br/>Cost</td>
+				<td colspan="3" style="background-color:#eee;">.NET<br/><br/>Free</td>
+				<td>Xamarin<br/>.Mac<br/>$0 - $999</td>
+				<td>Mono<br/><br/>Free</td>
+				<td>Xamarin<br/>.iOS<br/>$0 - $999</td>
+				<td colspan="2" style="background-color:#eee;">Xamarin<br/>.Android<br/>$0 - $999</td>
+				<td>Mono<br/><br/>Free</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="footer">
+				<td>App Store<br/>License <span class="super">1</span></td>
+				<td colspan="3" style="background-color:#eee;">Free, $19, $99 <span class="super">5</span></td>
+				<td>$99</td>
+				<td>Free</td>
+				<td>$99</td>
+				<td>$25</td>
+				<td>Free</td>
+				<td>Free <span class="super">2</span></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="footer notes">
+				<td colspan="11">
+					<ol style="margin-top:5px;">
+						<li>You can deploy to the various simulators and emulators for free. <br/>
+						    A license may be required to deploy to hardware and/or publish to the various app stores.</li>
+						<li>A $99 developer license is normally required to deploy to hardware and/or publish to the <br/>
+						    PlayStation Store, but Sony has extended their FREE publishing license promotion.</li>
+						<li>Xamarin Studio Business Edition is required for Visual Studio .NET to build iOS and Android applications. <br/>
+						    iOS applications are built from Visual Studio .NET remotely on a Mac OS X development PC.</li>
+						<li>Cost is per platform, per developer. You only need to purchase Xamarin Studio once. You can install on Windows and/or Mac OS X.<br/>
+						    [<i>Technically, you don't purchase Xamarin Studio. You pay for the Xamarin.iOS, Xamarin.Android, and Xamarin.Mac compilers.</i>]</li>
+						<li>You can deploy Windows games the traditional way (without a license). If you want to sell your game <br/>
+						    via the Windows Store, you'll need an Individual ($19) or Company ($99) developer account.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

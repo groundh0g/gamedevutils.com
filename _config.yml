@@ -1,0 +1,222 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title : GameDevUtils.com
+tagline: a suite of &#35;gamedev tools
+description: > # overridden in  jaytch.description, but some other templates may use this
+  A collection of cross-platform &#35;gamedev apps.
+
+twitter_username: groundh0g # overridden in  jaytch.authors, but some other templates may use this
+github_username:  groundh0g # overridden in  jaytch.authors, but some other templates may use this
+email: hello@moreoncode.com     # overridden in  jaytch.authors, but some other templates may use this
+
+# The base hostname & protocol for your site ...
+#   If hosted as Github Pages user, url: "http://USERNAME.github.io" # branch master
+#   If hosted as Github Pages organization, url: "http://ORGNAME.github.io" # branch master
+#   If hosted as Github Pages project of a user, url: "http://USERNAME.github.io/PROJNAME" # branch gh-pages
+#   If hosted as Github Pages project of an organization, url: "http://ORGNAME.github.io/PROJNAME" # branch gh-pages
+#   If hosted on a custom domain (has a CNAME file), url: "http://DOMAIN.com"
+url: "http://gamedevutils.com"
+baseurl: "" # the subpath of your site, e.g. /blog
+
+layouts_dir: ./_layouts/blog # valid values are:
+      #    blog       - what 99% of folks will use
+      #    book       - an open-source book
+      #    daily      - a post-a-day site
+      #    project    - a project or product site
+      #    soon       - a "coming soon" site
+      #    webapp     - a web application, wrapped with a blog
+
+# Build settings
+markdown: kramdown
+
+# Jaytch settings
+jaytch:
+  version : 0.1.0
+
+  title : GameDevUtils.com
+  tagline: a suite of &#35;gamedev tools
+  description: > # overridden in  jaytch.description, but some other templates may use this
+    A collection of cross-platform &#35;gamedev apps.
+
+  page_404: sticky # badge | dog | droids | glass | link | milk | monster | potty | shrug | sticky | tweet | zork
+  tweetHash:     "gamedev" # don't hash first tag
+  tweetShoutOut: "groundh0g"
+
+  footer:
+    col1: "Being Social | I don't get out much. But I'm online as | <a target='_blank' href='https://twitter.com/groundh0g' title='Twitter'>groundh0g</a>, <a target='_blank' href='https://www.facebook.com/groundh0g' title='Facebook'>groundh0g</a>, <a target='_blank' href='https://www.youtube.com/user/groundh0g' title='YouTube'>groundh0g</a>, | <a target='_blank' href='https://www.linkedin.com/in/groundh0g' title='LinkedIn'>groundh0g</a>, <a target='_blank' href='https://github.com/groundh0g' title='GitHub'>groundh0g</a>, &amp; <a target='_blank' href='https://plus.google.com/+JosephHall_groundh0g/posts' title='Google+'>groundh0g</a>."
+    col2: "&copy; Copyright | Content is copyright &copy; %year% Joseph B. Hall. | You may use the content from this site for | personal or commercial use. Links appreciated."
+    col3: "Share This | I'm in constant need of validation. | You can easily boost my self esteem. | Just <a target='_blank' href='http://www.fb.com/MoreOnCode' target='_blank'>Like</a>, <a target='_blank' href='https://plus.google.com/u/0/b/103732215392457387894/103732215392457387894/posts/p/pub' target='_blank'>+1</a>, <a target='_blank' href='https://twitter.com/MoreOnCode' target='_blank'>Follow</a>, or <a target='_blank' href='http://www.moreoncode.com/' target='_blank'>share a link</a>."
+
+  search: # valid values are: true | false | {number}
+    title:     true # always search
+    tags:      true # always search
+    keywords:  true # always search
+    excerpt:   2000 # only search when fewer than 2001 posts
+    inclPages: true # valid values are: true | false
+
+  layout:
+    homepage: homepage.md
+    minified: true          # Use *.min.css and *.min.js, when available.
+    usecdn: false           # Use CDN (content delivery network), when supported.
+    customcss: custom.css   # loaded after theme css files
+    customjs:  custom.js    # loaded after theme js files
+    framework: bootstrap-v3 # default | bootstrap-v3
+    theme: default # When used by bootstrap-v3, valid values are:
+                   #    default | cerulean | cosmo | cyborg |
+                   #    darkly | flatly | journal | lumen | paper |
+                   #    readable | sandstone | simplex | slate |
+                   #    spacelab | superhero | united | yeti
+    nav_links: [ # the main menu links at the top of every page
+      # "Archive|/archive",
+      # "Categories|/categories",
+      # "Tags|/tags",
+      # "Contributors|/contributors",
+      "Blog|/blog",
+      [ "Apps",
+        "Sheets|/webapps/sheets/",
+        "Fonts|/webapps/fonts/",
+        "Tiles|/webpps/tiles/",
+        "Bones|/webpps/bones/",
+      ],
+      "About Site|/about"
+    ]
+    sidebar_left:
+      sidebars: false # false | ["facebook", "twitter", ...]
+    sidebar_right:
+      sidebars: ["calendar", "posts", "tagcloud", "twitter"]
+      columns:  3
+      hideForHome: true
+      hideForBook: true
+      hideForApps: true
+      hideForPage: false
+      hideForPost: false
+
+  sidebars:
+    facebook: #https://developers.facebook.com/docs/plugins/page-plugin/
+      page:   Fauxcabulary
+      title:  Fauxcabulary.org
+    facebook2:
+      type:  facebook
+      page:  Codetopia
+    twitter:    # https://twitter.com/settings/widgets/new
+      name:     GetJaytch
+      widgetId: 316238224135684096
+    googleplus: # https://www.kycosoftware.com/code/googleplus-feed-widget-2
+      profileId: 113415901204258128457 # +JosephHall_groundh0g
+    tagcloud:
+      title:   "Tag Cloud"
+      maxTags: 20
+    author:
+      type:  author
+    posts:
+      type:  posts
+      limit: # default 3
+      words: # default 15
+      showViewPostLink: false
+      showArchiveLink: false
+      archiveUrl: "/archive"
+      category: # default is all
+      tag:      # default is all
+    quote:
+      type: quote
+      title:
+      quote: # use page's quote
+    quote2:
+      type: quote
+      quote: You can design and create, and build the most wonderful place in the world. But it takes people to make the dream a reality. -- <a href="http://www.brainyquote.com/quotes/authors/w/walt_disney.html">Walt Disney</a>
+    quote3:
+      type: quote
+      quote: Women are like teabags. We don't know our true strength until we are in hot water!
+    quote4:
+      type: quote
+      quote: # use the page's quote
+    calendar:
+      title: Latest Posts
+      date:  # date of most recent post
+      width: 100%
+    countdown:
+      title:    Site Age
+      class:    countup
+      mode:     inline # block
+      datetime: # page.date
+    custom:
+      type: custom
+      path: daily-masthead.md
+
+  contributorBios:
+    groundh0g:
+      name:       Joseph Hall
+      alias:      groundh0g
+      image:      images/contributors/groundh0g.png
+      role:       Programmer / Writer
+      bio: > # brief description goes here
+        Joe lives with his wife and three daughters in Newnan, Georgia. Every
+        summer, Joe teaches high school students how to write games during an
+        intense weeklong course in North Carolina for Landry Academy. In his free
+        time, Joe dabbles in sketching, cartooning, and creating 3D models. When
+        you see his artistic creations, you’ll understand why he makes his living
+        as a programmer.
+      email:      hello@moreoncode.com
+      website:    http://moreoncode.com/
+      twitter:    groundh0g
+      facebook:   groundh0g
+      youtube:    groundh0g
+      instagram:  groundh0g72
+      #googleplus: groundh0g
+      github:     groundh0g
+      deviant:    groundh0g
+      linkedin:   groundh0g
+      pinterest:  groundh0g
+    # FIXME: actually use admin alias as default in posts (and pages?)
+    admin:        # the "admin" author alias is reserved, used as default when no author is specified
+      name:       Administrator
+      alias:      admin
+      showInList: true # you can hide this little guy
+      image:      images/contributors/admin.png
+      role:       Filth-Dimensional Being
+      bio: > # brief description goes here
+        The "admin" alias is a reserved account, used as default when no author is specified.<br/>
+        You can hide this account by adding "showInList: false" to the "_config.yml" file.
+      email:      hello@moreoncode.com
+      website:    http://moreoncode.com/
+      twitter:    groundh0g
+
+  analytics : # settings for analytics, set 'provider' to the analytics provider you want to use
+    provider : google # Set 'provider' to false to turn analytics off entirely
+    gauges :
+        site_id : 'SITE ID'
+    google :
+        tracking_id : 'UA-3294285-9'
+    googleLegacy :
+        tracking_id : 'UA-123-12'
+    getclicky :
+      site_id :
+    mixpanel :
+        token : '_MIXPANEL_TOKEN_'
+    baidu :
+        token : '_BAIDU_TOKEN_'
+    piwik :
+        baseURL : 'myserver.tld/piwik' # Piwik installation address (without protocol)
+        idsite : '1'                   # the id of the site on Piwik
+
+  comments : # settings for comments helper, set 'provider' to the comment provider you want to use
+    provider : facebook # Set 'provider' to false to turn commenting off entirely
+    disqus :
+      short_name : myname
+    livefyre :
+      site_id : 123
+    intensedebate :
+      account : 123abc
+    facebook :
+      appid : 1112915812110531
+      num_posts: 5
+      width: 580
+      colorscheme: light
+    duoshuo :
+      short_name : myname

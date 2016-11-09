@@ -1,0 +1,54 @@
+{% assign wordCount = 0 %}
+
+<p><table cellpadding="0" cellspacing="5" border="0" style="margin-left:25px;">
+
+<tr style="font-weight:bolder; font-size:1.2em; text-align:center;">
+  <td style="text-align:left;">Title</td>
+  <td>&nbsp;</td>
+  <td>Counts</td>
+  <td>Status</td>
+  <td>Reviewed On</td>
+</tr>
+
+{% assign path = include.path | replace: "/index.md", "/"%}
+{% for file in site.pages %}
+  {% if file.path contains path %}
+    {% if file.path contains "/summary.md" or file.path contains "/index.md" %}
+    {% else %}
+
+{% assign twoWeekReview = false %}
+{% assign threeDayReview = false %}
+{% assign nowSeconds = site.time | date: '%s' | plus: 0 %}
+{% assign twoWeeks = file.lastReviewedOn | date: '%s' | plus: 1209600 | minus: nowSeconds %}
+{% assign threeDays = file.lastReviewedOn | date: '%s' | plus: 259200 | minus: nowSeconds %}
+{% if twoWeeks > 0 %}{% assign twoWeekReview = true %}{% endif %}
+{% if threeDays > 0 %}{% assign threeDayReview = true %}{% endif %}
+
+{% assign newCount = file.content | number_of_words %}
+{% assign wordCount = wordCount | plus: newCount %}
+
+<tr>
+  <td><a href="{{ site.baseurl }}/{{ file.path | replace: '.md', '.html' }}"><b>{{ file.title }}:</b> {{ file.tagline }}&nbsp;</a></td>
+  <td>&nbsp;</td>
+  <td style="text-align:right;">&nbsp;{{ newCount }} words&nbsp;</td>
+  <td>&nbsp;
+    <i title="stub - no content" class="fa fa-thumb-tack" {% if file.status != 'stub' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>
+    <i title="placeholder - limited content" class="fa fa-file-o" {% if file.status != 'placeholder' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>
+    <i title="draft - almost there" class="fa fa-file-text-o" {% if file.status != 'draft' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>
+    <i title="tech ed - ready for technical edit" class="fa fa-eye" {% if file.status != 'teched' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>
+    <i title="edit - ready for edit" class="fa fa-pencil" {% if file.status != 'edit' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>
+    <i title="done - ready for print" class="fa fa-check" {% if file.status != 'done' %}style="color:#ccc;"{% else %}style="color:#22f; cursor:default;"{% endif %}></i>&nbsp;&nbsp;</td>
+  <td style="text-align:right; {% if twoWeekReview != true %}color:#bbb;{% endif %} {% if threeDayReview == true %}font-weight:bold;{% endif %}">&nbsp;{{ file.lastReviewedOn | date: '%B %d, %Y' }}</td>
+</tr>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<tr>
+  <td style="text-align:right;"><b>Total: </b>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td style="text-align:right;">&nbsp;{{ wordCount }} words&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</table></p>

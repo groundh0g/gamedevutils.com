@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+{% include jaytch/layout-file.liquid file="head.html" %}
+
+<body role="document">
+
+{% include jaytch/layout-file.liquid file="header.html" %}
+
+{% unless page.appname %}
+<div class="container" role="main">
+    <div class="wrapper">
+{% endunless%}
+{{ content }}
+{% unless page.appname %}
+    </div>
+</div>
+{% endunless %}
+
+{% if page.appname %}
+    <script src="{% include jaytch/asset-path.liquid file='js/vendor/jquery.min.js' %}"></script>
+    <script src="{% include jaytch/asset-path.liquid file='js/bootstrap.min.js' %}"></script>
+{% else %}
+    {% include jaytch/layout-file.liquid file="footer.html" %}
+{% endif %}
+
+{% if page.path contains "gallery.html" or page.path contains "store.html" %}
+    <script src="{{ site.baseurl }}/assets/FullWidthImageSlider/js/modernizr.custom.js"></script>
+    <script src="{{ site.baseurl }}/assets/FullWidthImageSlider/js/jquery.cbpFWSlider.min.js"></script>
+{% endif %}
+
+{% if page.isApp %}
+
+    <!-- utils -->
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/base64.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/hmac-md5.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/hmac-sha256.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/object-keys.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/param-helpers.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/string-helpers.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/guid.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/json2.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/jszip.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/Blob.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/FileSaver.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/libgif.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/libgifparser.js"></script>
+
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/jQuery-rand.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/polyfill.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/queryString.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/typeahead.bundle.js"></script>
+
+    <!-- app version -->
+    <script type="text/javascript" src="{{ site.baseurl }}/webapps/{{ page.appname }}/js/version.js"></script>
+
+{% endif %}
+
+{% if page.scripts and page.scripts.size > 0 %}
+    <!-- app libs -->
+    {% for item in page.scripts %}
+        <script type="text/javascript" src="{{ site.baseurl }}/webapps/{{ page.appname }}/js/{{ item }}.js"></script>
+    {% endfor %}
+{% endif %}
+
+
+</body>
+
+</html>

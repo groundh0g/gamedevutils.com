@@ -1,0 +1,192 @@
+/*
+Copyright (c) 2016 Joseph B. Hall [@groundh0g]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+* {
+  padding:0;
+  margin:0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+
+	margin-bottom: 0;
+	padding-top: 50px;
+}
+
+.navbar { background-color:#000; margin:0 !important; }
+
+.divSidebarLeft {
+	border:1px solid #000;
+	position:absolute; 
+	top:95px; 
+	bottom:0; 
+	left:0; 
+	width:300px; 
+	background-color:#eee; 
+	color:#333;
+	overflow:auto;
+	padding:5px;
+}
+
+.optionHeading {
+	border-top:1px solid #666;
+	border-bottom:1px solid #666;
+	background-color:#888;
+	color:#fff;
+	font-size:1.2em;
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+.optionLabel {
+	cursor:default;
+}
+
+.divSidebarRightToolbar {
+	border:1px solid #000;
+	position:absolute; 
+	top:95px; 
+	height:46px; 
+	width:300px; 
+	right:0; 
+	background-color:#eee; 
+	color:#333;
+	padding:5px;
+}
+
+.divSidebarRight {
+	border:1px solid #000;
+	position:absolute; 
+	top:140px; 
+	bottom:0; 
+	right:0; 
+	width:300px; 
+	background-color:#eee; 
+	color:#333;
+	overflow:auto;
+	padding:5px;
+}
+
+.divWorkspaceToolbar {
+	border:1px solid #000;
+	position:absolute; 
+	right:300px; 
+	left:300px; 
+	top:95px; 
+	height:46px; 
+	background-color:#667; 
+	color:#fff;
+	padding:5px;
+}
+
+.divWorkspace {
+	border:1px solid #000;
+	position:absolute; 
+	top:140px; /* 136px; */ 
+	bottom:0; 
+	right:300px; 
+	left:300px; 
+	background-color:#888; 
+	color:#333;
+	overflow:auto;
+	padding:5px;
+}
+
+.divSpritesListItem {
+	padding:2px;
+	height:36px;
+	background-color:#fed;
+	border-bottom:1px solid #888;
+	line-height:32px;
+	font-weight:bold;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+}
+
+.divSpritesListItem img {
+	border:0;
+	margin: 2px 10px 2px 2px;
+	width:32px;
+	height:32px;
+	/*
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+	*/
+}
+
+.spriteListItemHighlight {
+	background-color:#def;
+}
+
+.spriteListItemSelected {
+	background-color:#abd;
+}
+
+.dropzone {
+	text-align:center;
+	border:1px dashed #866;
+	background-color: #fdd;
+	color: #633;
+	padding:5px;
+}
+
+.divWorkspaceContainer {
+	position:relative;
+	background-color:#866;
+	display:inline;
+}
+
+.divWorkspaceContainerCrop {
+	background: url(../img/transparent_background.png) repeat;
+}
+
+.divWorkspaceContainerCrop img {
+	max-width:none;
+	position:absolute;
+}
+
+.versionPlaceholder,
+.headerSubtext {
+	font-size:0.75em;
+	color:#888;
+}
+
+/* http://stackoverflow.com/questions/9622043/turn-off-bootstraps-css3-transitions-on-progress-bars#9622873 */
+#progressBar {
+  -webkit-transition: none; /* width 0.6s ease; */
+     -moz-transition: none; /* width 0.6s ease; */
+      -ms-transition: none; /* width 0.6s ease; */
+       -o-transition: none; /* width 0.6s ease; */
+          transition: none; /* width 0.6s ease; */
+}
