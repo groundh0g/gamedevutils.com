@@ -1,12 +1,10 @@
 
-## What is GameDevUtils.com?
-
 GameDevUtils.com is a suite of tools that I developed for my game programming students. There are certainly 
 better products out there, but I wanted my students to have access to free tools and, more importantly, 
 access to the source code for those tools. I also didn't want the tools to look like poop that was 
 designed in the 80's.
 
-<table border="0" cellpadding="0" cellspacing="0" style="width:600px; margin-left:30px;">
+<table border="0" cellpadding="0" cellspacing="0" style="width:600px; margin-left: auto; margin-right: auto;">
 	<tr>
 		<td style="width:300px;">
 			<img src="images/homepage/iconSpriteSheets.png" alt="Sprite Sheets"/>
@@ -38,6 +36,28 @@ designed in the 80's.
 			<p>A tool that manages the placement of a fixed <br/>
 			   set of tiled images. By painting these tiles <br/>
 			   into place, entire game worlds can be made.
+			</p>
+			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
+		</td>
+	</tr><tr>
+		<td style="width:300px;">
+			<img src="images/homepage/iconAnimation.png" alt="Sprite Animation"/>
+		</td>
+		<td style="text-align:center; white-space:nowrap;">
+			<p>A tool to assemble sprites into frame-based <br/>
+			   or bones-based animation sequences. <br/>
+			   Future version to include UV deformation.
+			</p>
+			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
+		</td>
+	</tr><tr>
+		<td style="width:300px;">
+			<img src="images/homepage/iconEffects.png" alt="Sprite Effects"/>
+		</td>
+		<td style="text-align:center; white-space:nowrap;">
+			<p>A tool to create visual effects as parametrized <br/>
+			   animations that can be placed in the game world <br/>
+			   and have their playback tweaked at run-time.
 			</p>
 			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
 		</td>
@@ -87,37 +107,48 @@ share files with teammates.</p>
 data and configured options. Once assets have been added to the project, they're never 
 referenced from your filesystem again. Share away.</p>
 
+<h3>FUTURE: Prefer a Command Line Interface?</h3>
+
+<p>One of the selling points of the commercial offerings is that they provide a command line interface for their tools. Today, GameDevUtils.com is a browser-based suite of tools.</p>
+
+<p>I have plans to refactor the logic that drives the web apps into [NodeJS](https://nodejs.org/) modules, and share that code between the web and console versions of the tools.</p>
+
+<p>Why all the effort? I want to support build pipelines. Just plug some scripts into your favorite continuous integration solution and build your assets alongside your code!</p>
+
+<h3>FUTURE: Want to Work in the Cloud?</h3>
+
+<p>The beauty of GameDevUtils.com is that there are no dependencies on the client. It's OS and, to a great extent, browser independent. Also nice is that your data need never leave your computer. That is, until you want to work with a team. If you think emailing ZIP files is clunky (I certainly do), then there's a new option coming your way soon!</p>
+
+<p>You're probably already using one of the many popular cloud storage providers. If so, you can tell GameDevUtils.com to reference assets as file links rather than embedding those resources in the project files. That makes the project files smaller, and it makes it easier to edit an asset without having to remove it from the project and add it back.</p>
+
+<ul>
+  <li>Google Drive</li>
+  <li>Dropbox</li>
+  <li>OneDrive</li>
+  <li>iCloud</li>
+  <li>GitHub</li>
+  <li>Bitbucket</li>
+</ul>
+
+<p>I know what you're thinking ... *Hey! GitHub and Bitbucket aren't cloud storage providers!*</p>
+
+<p>You're absolutely right. But, after the cloud storage support is in place, I hope to provide GitHub and BitBucket integration for the ultimate in team collaboration.</p>
+
 </div>
 
-## Want to Work in the Cloud?
+## Want to Help?
 
-The beauty of GameDevUtils.com is that there are no dependencies on the client. It's OS and, to a great extent, 
-browser independent. Also nice is that your data need never leave your computer. That is, until you want 
-to work with a team. If you think emailing ZIP files is clunky (I certainly do), then there's a new option 
-coming your way soon!
+Kick the tires. Try things out. If you find something wonky, or just want to suggest a new feature, [open an issue](https://github.com/groundh0g/gamedevutils.com/issues).
 
-You're probably already using one of the many popular cloud storage providers. If so, you can tell GameDevUtils.com 
-to reference assets as file links rather than embedding those resources in the project files. That makes the 
-project files smaller, and it makes it easier to edit an asset without having to remove it from the project 
-and add it back.
+If you're looking to contribute, I ask that you keep edits small and as self-contained as possible. The planned support for a command line interface will involve a lot of churn in the code.
 
-<p><div class="btn-toolbar" style="margin-left:20px;">
-    <div class="btn-group">
-        <button class="btn btn-default disabled" role="button" id="cmdConnectGoogleDrive"><i class="fa fa-google"></i> Google Drive</button>
-        <button class="btn btn-default disabled" role="button" id="cmdConnectDropBox"><i class="fa fa-dropbox"></i> DropBox</button>
-        <button class="btn btn-default disabled" role="button" id="cmdConnectOneDrive"><i class="fa fa-windows"></i> OneDrive</button>
-        <button class="btn btn-default disabled" role="button" id="cmdConnectICloud"><i class="fa fa-apple"></i> iCloud</button>
-    </div>
-    <div class="btn-group">
-        <button class="btn btn-default disabled" role="button" id="cmdConnectGitHub"><i class="fa fa-github"></i> GitHub</button>
-        <button class="btn btn-default disabled" role="button" id="cmdConnectGitHub"><i class="fa fa-bitbucket"></i> BitBucket</button>
-    </div>
-</div></p>
+Simple bug fixes are another story, though. Issue your pull request against the [gh-pages branch](https://github.com/groundh0g/gamedevutils.com/tree/gh-pages) for now. Once the code has been modularized for web and console, it should live in the master branch.
 
-I know what you're thinking ... *Hey! GitHub and BitBucket aren't cloud storage providers!*
+------
+Thanks for Visiting!<br>
+&mdash; [@groundh0g](https://twitter.com/groundh0g)
 
-You're absolutely right. But, after the cloud storage support is in place, I hope to provide GitHub &amp; 
-BitBucket integration for the ultimate in team collaboration.
+
 
 <div id="popupFeatureSheets" class="modal fade">
   <div class="modal-dialog">
