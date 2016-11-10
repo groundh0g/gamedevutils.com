@@ -1,0 +1,53 @@
+{% for pg in navLinks %}
+{% include jaytch/util-is-array.liquid data=pg %}
+{% if isArray %}
+
+{% comment %}
+Scan sub-pages to see if any are selected.
+FIXME: Is there a better way to do this?
+{% endcomment %}
+{% assign ACTIVE = "" %}
+{% assign ACTIVE_PAGE = "" %}
+{% for item in pg %}
+{% assign pglnk = item | split: "|" %}
+{% assign chkActive = page.url | replace: ".html", "" %}
+<!-- {{ chkActive }} -->
+{% if pglnk[1] == chkActive %}
+{% assign ACTIVE = "active" %}
+{% assign ACTIVE_PAGE = " - (" | append: pglnk[0] | append: ")" %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+<li class="dropdown {{ ACTIVE }}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+       aria-haspopup="true" aria-expanded="false">{{ pg[0] }} {{ ACTIVE_PAGE }} <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        {% for item in pg %}
+        {% if item == "---" %}
+        <li role="separator" class="divider"></li>
+        {% elsif forloop.first == false %}
+        {% assign pglnk = item | split: "|" %}
+        {% if pglnk[1] contains "#popup" %}
+        {% assign ACTIVE = "" %}
+        <li class="{{ ACTIVE }}"><a href="{{ pglnk[1] }}" role="button" data-toggle="modal">{{ pglnk[0] }}</a></li>
+        {% elsif pglnk[1] contains "./" %}
+        {% assign ACTIVE = "" %}
+        <li class="{{ ACTIVE }}"><a href="{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
+        {% else %}
+        {% assign pglnk = item | split: "|" %}
+        {% assign chkActive = page.url | replace: ".html", "" %}
+        {% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
+        <li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+</li>
+{% else %}
+{% assign pglnk = pg | split: "|" %}
+{% assign chkActive = page.url | replace: ".html", "" %}
+{% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
+<li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
+{% endif %}
+{% endfor %}

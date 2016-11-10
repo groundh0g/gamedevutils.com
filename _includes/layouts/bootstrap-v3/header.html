@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 {% assign layout_category = site.layouts_dir | split: '/' | last %}
-<nav class="navbar {% if page.isApp %}navbar-inverse{% else %}navbar-default{% endif %} navbar-fixed-top">
+<nav class="navbar {% if page.appname %}navbar-inverse{% else %}navbar-default{% endif %} navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -14,108 +14,26 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 {% assign navLinks = site.jaytch.layout.nav_links %}
-                {% for pg in navLinks %}
-                    {% include jaytch/util-is-array.liquid data=pg %}
-                    {% if isArray %}
+                {% include jaytch/layout-file.liquid file="header-navitems.html" %}
 
-                        {% comment %}
-                            Scan sub-pages to see if any are selected.
-                            FIXME: Is there a better way to do this?
-                        {% endcomment %}
-                        {% assign ACTIVE = "" %}
-                        {% assign ACTIVE_PAGE = "" %}
-                        {% for item in pg %}
-                            {% assign pglnk = item | split: "|" %}
-                            {% assign chkActive = page.url | replace: ".html", "" %}
-                            <!-- {{ chkActive }} -->
-                            {% if pglnk[1] == chkActive %}
-                                {% assign ACTIVE = "active" %}
-                                {% assign ACTIVE_PAGE = " - (" | append: pglnk[0] | append: ")" %}
-                                {% break %}
-                            {% endif %}
-                        {% endfor %}
-
-                        <li class="dropdown {{ ACTIVE }}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">{{ pg[0] }} {{ ACTIVE_PAGE }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                {% for item in pg %}
-                                    {% if item == "---" %}
-                                        <li role="separator" class="divider"></li>
-                                    {% elsif forloop.first == false %}
-                                        {% assign pglnk = item | split: "|" %}
-                                        {% if pglnk[1] contains "#popup" %}
-                                            {% assign ACTIVE = "" %}
-                                            <li class="{{ ACTIVE }}"><a href="{{ pglnk[1] }}" role="button" data-toggle="modal">{{ pglnk[0] }}</a></li>
-                                        {% else %}
-                                            {% assign pglnk = item | split: "|" %}
-                                            {% assign chkActive = page.url | replace: ".html", "" %}
-                                            {% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
-                                            <li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% else %}
-                        {% assign pglnk = pg | split: "|" %}
-                        {% assign chkActive = page.url | replace: ".html", "" %}
-                        {% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
-                        <li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
-                    {% endif %}
-                {% endfor %}
+                {% if page.appname and site.jaytch.layout.nav_links_app %}
+                {% assign navLinks = site.jaytch.layout.nav_links_app %}
+                {% include jaytch/layout-file.liquid file="header-navitems.html" %}
+                {% endif %}
             </ul>
 
             {% include jaytch/snips/search-ui.liquid %}
 
             <ul class="nav navbar-nav navbar-right">
                 {% assign navLinks = site.jaytch.layout.nav_links_right %}
-                {% for pg in navLinks %}
-                {% include jaytch/util-is-array.liquid data=pg %}
-                {% if isArray %}
+                {% include jaytch/layout-file.liquid file="header-navitems.html" %}
 
-                {% comment %}
-                Scan sub-pages to see if any are selected.
-                FIXME: Is there a better way to do this?
-                {% endcomment %}
-                {% assign ACTIVE = "" %}
-                {% for item in pg %}
-                {% assign pglnk = item | split: "|" %}
-                {% assign chkActive = page.url | replace: ".html", "" %}
-                <!-- {{ chkActive }} -->
-                {% if pglnk[1] == chkActive %}{% assign ACTIVE = "active" %}{% break %}{% endif %}
-                {% endfor %}
-
-                <li class="dropdown {{ ACTIVE }}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">{{ pg[0] }} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% for item in pg %}
-                        {% if item == "---" %}
-                        <li role="separator" class="divider"></li>
-                        {% elsif forloop.first == false %}
-                        {% assign pglnk = item | split: "|" %}
-                        {% if pglnk[1] contains "#popup" %}
-                        {% assign ACTIVE = "" %}
-                        <li class="{{ ACTIVE }}"><a href="{{ pglnk[1] }}" role="button" data-toggle="modal">{{ pglnk[0] }}</a></li>
-                        {% else %}
-                        {% assign pglnk = item | split: "|" %}
-                        {% assign chkActive = page.url | replace: ".html", "" %}
-                        {% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
-                        <li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% else %}
-                {% assign pglnk = pg | split: "|" %}
-                {% assign chkActive = page.url | replace: ".html", "" %}
-                {% capture ACTIVE %}{% if pglnk[1] == chkActive %}active{% endif %}{% endcapture %}
-                <li class="{{ ACTIVE }}"><a href="{{ site.baseurl }}{{ pglnk[1] }}">{{ pglnk[0] }}</a></li>
+                {% if page.appname and site.jaytch.layout.nav_links_app_right %}
+                {% assign navLinks = site.jaytch.layout.nav_links_app_right %}
+                {% include jaytch/layout-file.liquid file="header-navitems.html" %}
                 {% endif %}
-                {% endfor %}
             </ul>
+
 
 
         </div><!--/.nav-collapse -->

@@ -79,10 +79,10 @@ jaytch:
       # "Contributors|/contributors",
       [ "Apps",
         "Sheets|/webapps/sheets/",
-        "Fonts|/webapps/fonts/",
-        "Tiles|/webpps/tiles/",
-        "Bones|/webpps/bones/",
-        "Effects|/webpps/effects/",
+        "Fonts *|/webapps/fonts/",
+        "Tiles *|/webapps/tiles/",
+        "Bones *|/webapps/bones/",
+        "Effects *|/webapps/effects/",
       ],
     ]
     nav_links_right: [ # the main menu links at the top of every page
@@ -96,6 +96,9 @@ jaytch:
         "The OSS Modules|#popupAboutModules",
         "The License [MIT]|#popupAboutLicense"
       ]
+    ]
+    nav_links_app_right: [ # the main menu links at the top of every page
+      "Help|./docs"
     ]
     sidebar_left:
       sidebars: false # false | ["facebook", "twitter", ...]
