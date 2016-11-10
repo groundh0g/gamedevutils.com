@@ -77,14 +77,25 @@ jaytch:
       # "Categories|/categories",
       # "Tags|/tags",
       # "Contributors|/contributors",
-      "Blog|/blog",
       [ "Apps",
         "Sheets|/webapps/sheets/",
         "Fonts|/webapps/fonts/",
         "Tiles|/webpps/tiles/",
         "Bones|/webpps/bones/",
+        "Effects|/webpps/effects/",
       ],
-      "About Site|/about"
+    ]
+    nav_links_right: [ # the main menu links at the top of every page
+      # "Archive|/archive",
+      # "Categories|/categories",
+      # "Tags|/tags",
+      # "Contributors|/contributors",
+      "Blog|/blog",
+      [ "About",
+        "The Author|#popupAboutAuthor",
+        "The OSS Modules|#popupAboutModules",
+        "The License [MIT]|#popupAboutLicense"
+      ]
     ]
     sidebar_left:
       sidebars: false # false | ["facebook", "twitter", ...]
