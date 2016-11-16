@@ -14,7 +14,7 @@ designed in the 80's.
 			   within the game) into a single image, saving <br/>
 			   memory and reducing CPU-to-GPU chatter.
 			</p>
-			<p><a href="#popupFeatureSheets" role="button" data-toggle="modal" class="btn btn-primary">Show Features</a></p>
+			<p><a href="#popupFeatureSheets" role="button" data-toggle="modal" class="btn btn-primary">Show Features</a> <a href="{{ site.baseurl }}/webapps/sheets/" class="btn btn-primary">Go!</a></p>
 		</td>
 	</tr><tr>
 		<td style="width:300px;">
@@ -25,8 +25,7 @@ designed in the 80's.
 			   fonts into bitmap fonts - a format that is <br/>
 			   more easily consumed by game engines.
 			</p>
-			<p><a href="#popupFeatureFonts" role="button" data-toggle="modal" class="btn btn-primary">Show Features</a></p>
-			<!-- <p><a id="cmdShowFeaturesFonts" href="#null" class="btn btn-default disabled">Show Features</a></p> -->
+			<p><a href="#popupFeatureFonts" role="button" data-toggle="modal" class="btn btn-primary">Show Features</a> <a href="{{ site.baseurl }}/webapps/fonts/" class="btn btn-primary">Go!</a></p>
 		</td>
 	</tr><tr>
 		<td style="width:300px;">
@@ -37,7 +36,7 @@ designed in the 80's.
 			   set of tiled images. By painting these tiles <br/>
 			   into place, entire game worlds can be made.
 			</p>
-			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
+			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a> <a href="{{ site.baseurl }}/webapps/tiles/" class="btn btn-default disabled">Go!</a></p>
 		</td>
 	</tr><tr>
 		<td style="width:300px;">
@@ -48,7 +47,7 @@ designed in the 80's.
 			   or bones-based animation sequences. <br/>
 			   Future version to include UV deformation.
 			</p>
-			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
+			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a> <a href="{{ site.baseurl }}/webapps/bones/" class="btn btn-default disabled">Go!</a></p>
 		</td>
 	</tr><tr>
 		<td style="width:300px;">
@@ -59,7 +58,7 @@ designed in the 80's.
 			   animations that can be placed in the game world <br/>
 			   and have their playback tweaked at run-time.
 			</p>
-			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a></p>
+			<p><a id="cmdShowFeaturesTileEditor" href="#null" class="btn btn-default disabled">Show Features</a> <a href="{{ site.baseurl }}/webapps/effects/" class="btn btn-default disabled">Go!</a></p>
 		</td>
 	</tr>
 </table>

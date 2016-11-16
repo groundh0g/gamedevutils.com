@@ -1,0 +1,39 @@
+<div id="divWorkspaceToolbar" class="divWorkspaceToolbar">
+    <div class="btn-toolbar" style="margin:0; ">
+        <div class="btn-group">
+            <a id="cmdWorkspaceZoomOut" title="Zoom Out" href="#null" class="btn btn-default"><i class="glyphicon glyphicon-zoom-out"></i></a>
+            <a id="cmdWorkspaceZoomIn"  title="Zoom In" href="#null" class="btn btn-default"><i class="glyphicon glyphicon-zoom-in"></i></a>
+        </div>
+        <div class="btn-group input-group">
+            <input id="txtWorkspaceZoom" type="text" value="100%" size="5" class="form-control" style="width:66px;" /><a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul id="txtWorkspaceZoomOptions" class="dropdown-menu">
+                <li><a href="#null">1600.0%</a></li>
+                <li><a href="#null">&nbsp;800.0%</a></li>
+                <li><a href="#null">&nbsp;400.0%</a></li>
+                <li><a href="#null">&nbsp;200.0%</a></li>
+                <li><a href="#null">&nbsp;100.0% *</a></li>
+                <li><a href="#null">&nbsp;&nbsp;50.0%</a></li>
+                <li><a href="#null">&nbsp;&nbsp;25.0%</a></li>
+                <li><a href="#null">&nbsp;&nbsp;12.5%</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a id="cmdWorkspaceFitWidth"  title="Fit Workspace Width"  href="#null" class="btn btn-default"><i class="glyphicon glyphicon-resize-horizontal"></i></a>
+            <a id="cmdWorkspaceFitHeight" title="Fit Workspace Height" href="#null" class="btn btn-default"><i class="glyphicon glyphicon-resize-vertical"></i></a>
+            <a id="cmdWorkspaceFitBoth"   title="Fit to Workspace"     href="#null" class="btn btn-default"><i class="glyphicon glyphicon-resize-full"></i></a>
+        </div>
+        <div id="progressBarWrapper" class="btn-group pull-right" style="width:200px;">
+            <div class="progress" style="height:34px; background-color:#889; background-image:none;">
+                <div id="progressBar" class="progress-bar" role="progressbar" style="width:0;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divWorkspace" class="divWorkspace">
+    <div class="divWorkspaceContainer">
+        <div id="divWorkspaceContainerCrop" class="divWorkspaceContainerCrop" style="width:32px; height:32px;">
+            <img src="{{ site.baseurl }}/images/homepage/iconSpriteFonts@2x.png" />
+        </div>
+    </div>
+</div>

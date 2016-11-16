@@ -24,6 +24,9 @@
 {% if page.appname %}
     <script src="{% include jaytch/asset-path.liquid file='js/vendor/jquery.min.js' %}"></script>
     <script src="{% include jaytch/asset-path.liquid file='js/bootstrap.min.js' %}"></script>
+    <script src="{{ site.baseurl }}/assets/script/search/bootstrap3-typeahead.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/script/search/polyfill.js"></script>
+    <script src="{{ site.baseurl }}/assets/script/search/bootstrap3-search.js"></script>
 {% else %}
     {% include jaytch/layout-file.liquid file="footer.html" %}
 {% endif %}
@@ -53,7 +56,7 @@
     <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/jQuery-rand.js"></script>
     <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/polyfill.js"></script>
     <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/queryString.js"></script>
-    <script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/typeahead.bundle.js"></script>
+    <!--<script type="text/javascript" src="{{ site.baseurl }}/webapps/common/js/typeahead.bundle.js"></script>-->
 
     <!-- app version -->
     <script type="text/javascript" src="{{ site.baseurl }}/webapps/{{ page.appname }}/js/version.js"></script>

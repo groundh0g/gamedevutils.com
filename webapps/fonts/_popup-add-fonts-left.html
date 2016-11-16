@@ -1,0 +1,78 @@
+<script type="text/javascript">
+    widgets = window["widgets"] || [];
+</script>
+
+<div class="paneGroup">
+    <!--<div class="btn-group" style="width:100%;">-->
+    <!--<span class="label">Search</span><br/>-->
+    <!--<input id="txtFontSearch" type="text" style="width: 100%;" /><br/>-->
+    <!--</div><br/>-->
+    <span class="option-label-light">Search</span><br/>
+    <div class="btn-group" style="width:100%;">
+        <div class="input-group btn-group" style="margin:0;">
+            <input id="txtFontSearch" name="txtFontSearch" class="typeahead form-control" type="text" autocomplete="off" spellcheck="false" placeholder="Font Name" style="margin:0; width:100%;">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
+    </div><br/>
+
+    <span class="option-label-light">Category</span><br/>
+    <div id="ddlFontCategory_DIV">
+        <script type="text/javascript">
+            addDropdownWidget(
+                    ["All *", "Display", "Handwriting", "Monospace", "Sans-Serif", "Serif"],
+                    "Filter the list of fonts to the selected category."
+            );
+        </script>
+    </div>
+
+    <span class="option-label-light">Suggestions</span><br/>
+    <div id="ddlFontSuggestions_DIV">
+        <script type="text/javascript">
+            addDropdownWidget(
+                    ["All *", "Headings", "Paragraphs"],
+                    "Filter the list of fonts to the specified type."
+            );
+        </script>
+    </div>
+
+    <span class="option-label-light">Subset</span><br/>
+    <div id="ddlFontSubset_DIV">
+        <script type="text/javascript">
+            addDropdownWidget(
+                    ["Arabic", "Cyrillic", "Cyrillic Extended", "Devanagari", "Greek", "Greek Extended", "Hebrew", "Khmer", "Latin *", "Latin Extended", "Tamil", "Telugu", "Thai", "Vietnamese"],
+                    "Show only fonts with the specified subset."
+            );
+        </script>
+    </div>
+
+    <span class="option-label-light">Sort By</span><br/>
+    <div id="ddlFontSortBy_DIV">
+        <script type="text/javascript">
+            addDropdownWidget(
+                    ["category", "family", "lastModified", "popularity *"],
+                    "Order the fonts by the selected property."
+            );
+        </script>
+    </div>
+
+    <span class="option-label-light">Display</span><br/>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a id="cmdFontToggleDark" class="btn btn-default" title="Toggle Light/Dark Mode"><i class="fa fa-adjust"></i></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-default" title="Reset Options"><i class="fa fa-repeat"></i></a>
+        </div>
+        <div class="btn-group">
+            <form class="form-inline"><div class="input-group btn-group" style="margin:0;"><input id="txtFontSize" type="text" value="30" class="form-control" style="margin:0; width:50px;" title="Preview Font Size"><span class="input-group-addon"><i class="fa fa-arrows-v"></i></span></div></form>
+        </div>
+    </div><!--<br/>-->
+
+    <span class="option-label-light">Preview Text</span><br/>
+    <div class="input-group btn-group" style="margin:0;">
+        <input id="txtFontPreviewText" class="form-control" type="text" value="The quick brown fox jumps over the lazy dog." style="margin:0; width:100%;" title="The text to display in the preview.">
+        <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
+    </div><br/>
+
+    <br/><br/><br/><br/>
+</div>

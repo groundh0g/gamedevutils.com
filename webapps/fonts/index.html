@@ -3,13 +3,100 @@ layout: webapp
 title: GDU - Fonts
 tagline: a suite of &#35;gamedev tools
 description: GameDevUtils.com is a suite of &#35;gamedev tools.
-scripts: []
+scripts: [google-fonts, events, events-popup, console]
 appname: fonts
 showTitle: false
 ---
 
-<div style="margin-top:50px; margin-left:50px;">
+<script type="text/javascript">
+    widgets = window["widgets"] || [];
 
-	<img src="{{ site.baseurl }}/images/homepage/iconSpriteFonts@2x.png" />
+//    var createDropdownWidget = function(name, options, selected) {
+//        return function() {
+//            var ddlName = "#" + name;
+//            var ddlOptionsName = ddlName + "Options";
+//
+//            var $ul = $(ddlOptionsName);
+//            $ul.html("");
+//            for(var i = 0; i < options.length; i++) {
+//                $ul.append($("<li>").append($("<a>").text(options[i]).prop("href", "#null")));
+//                if(selected === undefined && options[i].contains(" *")) {
+//                    selected = options[i];
+//                }
+//            }
+//
+//            selected = selected || options[0];
+//            $(ddlName).text(selected.replace(/ \*/gi, ""));
+//
+//            $(ddlOptionsName).children("li").click(function () {
+//                var val = $(this).text().replace(/ \*/gi, "");
+//                $(ddlName).text(val);
+//            });
+//        }
+//    };
 
-</div>
+//    var createDropdownWidget2 = ;
+
+    var addDropdownWidget = function(options, tooltip) {
+        var scriptTag = document.scripts[document.scripts.length - 1];
+        var parentTag = scriptTag.parentNode;
+        var parentId  = parentTag.id;
+        var controlId = parentId.replace(/_DIV$/, "");
+
+        widgets.push(
+                function(options, tooltip) {
+                    return function() {
+                        var ddlName = controlId;
+                        var ddlOptionsName = ddlName + "Options";
+
+                        var $a = $("<a/>")
+                                .addClass("btn btn-default dropdown-toggle")
+                                .css("width", "100%")
+                                .attr("data-toggle", "dropdown")
+                                .attr("aria-expanded", "false");
+                        if(tooltip) { $a.attr("title", tooltip); }
+                        $a.append($("<span/>").css("width", "100%").prop("id", ddlName));
+                        $a.html($a.html() + "&nbsp;");
+                        $a.append($("<span/>").addClass("caret"));
+
+                        var $ul = $("<ul/>").prop("id", ddlOptionsName).addClass("dropdown-menu");
+
+                        var $div = $("<div/>").addClass("btn-group").css("width", "100%")
+                                .append($a)
+                                .append($ul);
+
+                        $ul.html("");
+                        var selected;
+                        for(var i = 0; i < options.length; i++) {
+                            $ul.append($("<li>").append($("<a>").text(options[i]).prop("href", "#null")));
+                            if(selected === undefined && options[i].contains(" *")) {
+                                selected = options[i];
+                            }
+                        }
+
+                        selected = selected || options[0];
+                        $("#" + parentId).append($div);
+                        $("#" + ddlName).text(selected.replace(/ \*/gi, ""));
+
+                        $("#" + ddlOptionsName).children("li").click(function () {
+                            var val = $(this).text().replace(/ \*/gi, "");
+                            $("#" + ddlName).text(val);
+                        });
+                    }
+                }(options, tooltip)
+        );
+    };
+
+</script>
+
+{% include_relative _main-toolbar.html %}
+
+{% include_relative _main-left.html %}
+
+{% include_relative _main-workspace.html %}
+
+{% include_relative _main-right.html %}
+
+{% include_relative _popup-add-fonts.html %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>

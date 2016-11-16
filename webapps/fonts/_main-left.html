@@ -1,0 +1,236 @@
+
+<script type="text/javascript">
+    widgets = window["widgets"] || [];
+</script>
+
+<div class="divSidebarLeft" id="divSidebarLeft">
+
+    <div class="paneGroup">
+
+        <span class="option-label-big">Output</span>
+
+        <span class="option-label">Project Name</span><br/>
+        <div class="btn-group" style="width:100%;">
+            <input id="txtProjectName" class="form-control" type="text" value="Untitled" style="margin:0; width:100%;">
+        </div><br/>
+
+        <span class="option-label">Image Format</span><br/>
+        <div id="ddlProjectImageFormat_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["GIF", "JPG", "PNG *"],
+                        "In what format should the published image be generated?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Data Format</span><br/>
+        <div id="ddlProjectDataFormat_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["CSS", "JSON", "XML *"],
+                        "What format should the atlas use?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">ZIP Project</span><br/>
+        <div id="ddlProjectZipProject_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Compress the project file? Not human-readable."
+                );
+            </script>
+        </div>
+
+
+
+        <span class="option-label-big">Algorithm</span>
+
+        <span class="option-label">Sprite Packer</span><br/>
+        <div id="ddlProjectSpritePacker_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Basic", "Encoded *", "JoeRects"],
+                        "What method should be used to pack the sprites?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Sort By</span><br/>
+        <div id="ddlProjectSortBy_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Area", "Area Descending", "Glyph *", "Glyph Descending", "Height", "Height Descending", "Width", "Width Descending"],
+                        "How should glyphs be ordered?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Allow Rotate</span><br/>
+        <div id="ddlProjectAllowRotate_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Allow glyphs to be rotated in image?"
+                );
+            </script>
+        </div>
+
+
+
+        <span class="option-label-big">Dimensions</span>
+
+        <span class="option-label">Width</span><br/>
+        <div id="ddlProjectWidth_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["16", "32", "64", "128", "256", "512", "1024 *", "2048", "4096", "8192", "16384"],
+                        "What is the maximum width of the image?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Height</span><br/>
+        <div id="ddlProjectHeight_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["16", "32", "64", "128", "256", "512", "1024 *", "2048", "4096", "8192", "16384"],
+                        "What is the maximum height of the image?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Size Mode</span><br/>
+        <div id="ddlProjectSizeMode_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Fixed Size", "Max Size *"],
+                        "Are the specified dimensions actual or maximum values?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Constraint</span><br/>
+        <div id="ddlProjectConstraint_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Any Size", "Power of Two *"],
+                        "Should the images dimensions be a power of two?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Force Square</span><br/>
+        <div id="ddlProjectForceSquare_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Should the images dimensions equal?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Include @2x</span><br/>
+        <div id="ddlProjectIncludeAt2x_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Publish full size as '*@2x'. Include 1/2 size copy."
+                );
+            </script>
+        </div>
+
+
+
+        <span class="option-label-big">Padding</span>
+
+        <span class="option-label">Border Padding</span><br/>
+        <div class="btn-group" style="width:100%;">
+            <div class="input-group btn-group" style="margin:0;">
+                <input id="txtProjectBorderPadding" class="form-control" type="text" style="margin:0; width:100%;" value="2" title="Minimum transparent space from the edge of the image.">
+                <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+            </div>
+        </div><br/>
+
+        <span class="option-label">Shape Padding</span><br/>
+        <div class="btn-group" style="width:100%;">
+            <div class="input-group btn-group" style="margin:0;">
+                <input id="txtProjectShapePadding" class="form-control" type="text" style="margin:0; width:100%;" value="2" title="Minimum transparent space between glyphs.">
+                <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+            </div>
+        </div><br/>
+
+        <span class="option-label">Inner Padding</span><br/>
+        <div class="btn-group" style="width:100%;">
+            <div class="input-group btn-group" style="margin:0;">
+                <input id="txtProjectInnerPadding" class="form-control" type="text" style="margin:0; width:100%;" value="2" title="Add transparent pixels around each glyph.">
+                <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+            </div>
+        </div><br/>
+
+
+
+        <span class="option-label-big">Filters</span>
+
+        <span class="option-label">Clean Alpha</span><br/>
+        <div id="ddlProjectCleanAlpha_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Make transparent pixels RGBA(0,0,0,0)? Compresses better."
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Color Mask</span><br/>
+        <div id="ddlProjectColorMask_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Use top-left pixel color as transparency mask?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Alias Glyphs</span><br/>
+        <div id="ddlProjectAliasGlyphs_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Merge identical sprites into one instance?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Debug Mode</span><br/>
+        <div id="ddlProjectDebugMode_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["Yes", "No *"],
+                        "Draw shape borders?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Trim Mode</span><br/>
+        <div id="ddlProjectTrimMode_DIV">
+            <script type="text/javascript">
+                addDropdownWidget(
+                        ["None *", "Trim"],
+                        "Trim transparent border pixels?"
+                );
+            </script>
+        </div>
+
+        <span class="option-label">Trim Threshold</span><br/>
+        <div class="btn-group" style="width:100%;">
+            <input id="txtProjectTrimThreshold" class="form-control" type="text" value="1" style="margin:0; width:100%;" title="Alpha values below this value are considered transparent.">
+        </div><br/>
+
+        <br/><br/><br/><br/>
+
+    </div>
+
+</div>

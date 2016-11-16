@@ -39,3 +39,159 @@ body {
 
 .navbar { background-color:#000; margin:0 !important; }
 
+.paneGroup {
+    margin-bottom: 10px;
+}
+
+.option-label-big, .option-label,
+.option-label-big-light, .option-label-light {
+    font-size: 0.75em;
+    font-weight: bolder;
+}
+
+.option-label-big, .option-label-big-light {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 1.3em;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.option-label-big-light, .option-label-light {
+    color: #fff;
+}
+
+.option-label-big-light {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.divSidebarLeft {
+    border:1px solid #000;
+    position:absolute;
+    top:95px;
+    bottom:0;
+    left:0;
+    width:200px;
+    background-color:#ddd;
+    color: #333;
+    overflow:auto;
+    padding:5px;
+}
+
+.divSidebarRightToolbar {
+    border:1px solid #000;
+    position:absolute;
+    top:95px;
+    height:46px;
+    width:300px;
+    right:0;
+    background-color:#eee;
+    color:#333;
+    padding:5px;
+}
+
+.divSidebarRight {
+    border:1px solid #000;
+    position:absolute;
+    top:140px;
+    bottom:0;
+    right:0;
+    width:300px;
+    background-color:#eee;
+    color:#333;
+    overflow:auto;
+    padding:5px;
+}
+
+.divWorkspaceToolbar {
+    border:1px solid #000;
+    position:absolute;
+    right:300px;
+    left:200px;
+    top:95px;
+    height:46px;
+    background-color:#667;
+    color:#fff;
+    padding:5px;
+}
+
+.divWorkspace {
+    border:1px solid #000;
+    position:absolute;
+    top:140px; /* 136px; */
+    bottom:0;
+    right:200px;
+    left:200px;
+    background-color:#888;
+    color:#333;
+    overflow:auto;
+    padding:5px;
+}
+
+.divPopupSidebarLeft {
+    border:1px solid #000;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:200px;
+    background-color:#0a68b4;
+    color: #333;
+    overflow:auto;
+    padding:5px;
+}
+
+.fontListItems {
+    margin-top: -5px;
+    margin-bottom: -5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #000;
+    background-color: #fff;
+}
+
+.dark-items {
+    color: #fff;
+    background-color: #000;
+}
+
+.fontListItem {
+    border:1px solid #000;
+    margin:5px;
+}
+
+.fontListItems.dark-items .fontListItem {
+    border:1px solid #fff;
+}
+
+.fontListItemText {
+    margin:15px;
+    font-size:30pt;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.fontListItemLabel {
+    padding-left:15px;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.fontListItemButtons {
+    margin:5px;
+    margin-top:0;
+}
+/*
+<div class="fontListItem">
+<div class="fontListItemText">The quick brown fox jumps over the lazy dog.</div>
+<div class="fontListItemButtons">
+<a href="#null" role="button" class="btn btn-default" title="Font Options"><i class="fa fa-cog"></i></a>
+<a href="#null" role="button" class="btn btn-default" title="Font Info"><i class="fa fa-question"></i></a>
+<a href="#null" role="button" class="btn btn-default" title="Add this Font"><i class="fa fa-plus"></i></a>
+</div>
+</div>
+*/
