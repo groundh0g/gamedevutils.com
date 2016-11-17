@@ -185,13 +185,8 @@ body {
     margin:5px;
     margin-top:0;
 }
-/*
-<div class="fontListItem">
-<div class="fontListItemText">The quick brown fox jumps over the lazy dog.</div>
-<div class="fontListItemButtons">
-<a href="#null" role="button" class="btn btn-default" title="Font Options"><i class="fa fa-cog"></i></a>
-<a href="#null" role="button" class="btn btn-default" title="Font Info"><i class="fa fa-question"></i></a>
-<a href="#null" role="button" class="btn btn-default" title="Add this Font"><i class="fa fa-plus"></i></a>
-</div>
-</div>
-*/
+
+.not-loaded {
+    color: #ddd;
+    background-color: #eee;
+}
