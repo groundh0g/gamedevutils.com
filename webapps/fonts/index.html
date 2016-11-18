@@ -9,33 +9,14 @@ showTitle: false
 ---
 
 <script type="text/javascript">
-    widgets = window["widgets"] || [];
+    var widgets = [];
+    var widgetListeners = [];
 
-//    var createDropdownWidget = function(name, options, selected) {
-//        return function() {
-//            var ddlName = "#" + name;
-//            var ddlOptionsName = ddlName + "Options";
-//
-//            var $ul = $(ddlOptionsName);
-//            $ul.html("");
-//            for(var i = 0; i < options.length; i++) {
-//                $ul.append($("<li>").append($("<a>").text(options[i]).prop("href", "#null")));
-//                if(selected === undefined && options[i].contains(" *")) {
-//                    selected = options[i];
-//                }
-//            }
-//
-//            selected = selected || options[0];
-//            $(ddlName).text(selected.replace(/ \*/gi, ""));
-//
-//            $(ddlOptionsName).children("li").click(function () {
-//                var val = $(this).text().replace(/ \*/gi, "");
-//                $(ddlName).text(val);
-//            });
-//        }
-//    };
-
-//    var createDropdownWidget2 = ;
+    var onWidgetValueChanging = function(name, value) {
+        for(var key in widgetListeners) {
+            widgetListeners[key](name, value);
+        }
+    };
 
     var addDropdownWidget = function(options, tooltip) {
         var scriptTag = document.scripts[document.scripts.length - 1];
@@ -80,6 +61,7 @@ showTitle: false
 
                         $("#" + ddlOptionsName).children("li").click(function () {
                             var val = $(this).text().replace(/ \*/gi, "");
+                            onWidgetValueChanging(ddlName, val);
                             $("#" + ddlName).text(val);
                         });
                     }

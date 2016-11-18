@@ -23,10 +23,11 @@
 $(document).ready(function(){
     "use strict";
 
-    if(widgets) {
-        for(var i = 0; i < widgets.length; i++) {
-            widgets[i]();
-        }
+    widgetListeners.push(function(name, val){
+    });
+
+    for(var i = 0; i < widgets.length; i++) {
+        widgets[i]();
     }
 
     alert("NOTE: This is a sneak peek. You can kick the tires, but you cannot save your work.");

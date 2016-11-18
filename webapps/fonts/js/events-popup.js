@@ -20,8 +20,51 @@
  THE SOFTWARE.
  */
 
+fontFilters = {
+    txtFontSearch: "",
+    ddlFontCategory: "All",
+    ddlFontSuggestions: "All",
+    ddlFontSubsets: "All"
+};
+
 $(document).ready(function(){
     "use strict";
+
+    var refreshFontList = function(count){
+        clearFontListItems();
+        setTimeout(function(){
+            var showAllFontsAtOnce = false;
+            showAllFontsAtOnce |= (fontFilters.txtFontSearch !== "");
+            showAllFontsAtOnce |= (fontFilters.ddlFontCategory !== "All");
+            showAllFontsAtOnce |= (fontFilters.ddlFontSuggestions !== "All");
+            showAllFontsAtOnce |= (fontFilters.ddlFontSubsets !== "All");
+            createFontListItems(count || (showAllFontsAtOnce ? 99999 : 10));
+        }, 0);
+    };
+
+    widgetListeners.push(function(name, val){
+        switch(name) {
+            case "ddlFontCategory":
+            case "ddlFontSuggestions":
+            case "ddlFontSubset":
+                fontFilters[name] = val;
+                refreshFontList();
+                break;
+            case "ddlFontSortBy":
+                if($("#" + name).val() !== val) {
+                    GoogleFonts.SortFontList(val);
+                    refreshFontList();
+                }
+                break;
+        }
+    });
+
+    $("txtFontSearch").keypress(function(e){
+        if(e.which === 13) {
+            fontFilters.txtFontSearch = $(this).val();
+            refreshFontList();
+        }
+    });
 
     $("#cmdFontToggleDark").click(function () {
         var $div = $("#divFontListItems");
@@ -32,8 +75,19 @@ $(document).ready(function(){
         }
     });
 
+    $("#cmdFontResetOptions").click(function () {
+        $("#ddlFontCategory").text("All");
+        $("#ddlFontSuggestions").text("All");
+        $("#ddlFontSubset").text("Latin");
+        if($("#ddlFontSortBy").text() !== "popularity") {
+            $("#ddlFontSortBy").text("popularity");
+            GoogleFonts.SortFontList("popularity");
+        }
+        $("#txtFontSearch").val("");
+        refreshFontList();
+    });
+
     $("#cmdFontRefresh").click(function(){
-        clearFontListItems();
-        setTimeout(function(){ createFontListItems(); }, 0)
+        refreshFontList();
     });
 });
