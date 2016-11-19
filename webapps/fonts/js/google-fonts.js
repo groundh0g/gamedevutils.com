@@ -201,7 +201,7 @@ $(document).ready(function(){
         $('#txtFontSearch').typeahead({
             source: GoogleFonts.FontList.items,
             displayText: function(item) { return item.family; },
-            autoSelect: true
+            autoSelect: false
         });
 
         clearFontListItems();
@@ -209,16 +209,15 @@ $(document).ready(function(){
 
     });
 
-    var fontListItemHeight = 0;
-    var fontListDivHeight = 0;
     $("#divPopupFontList").scroll(function() {
+        if(suppressLoadOnScroll) { return; }
+
         var $fontListItems = $("div.fontListItem");
         var fontListItemCount = $fontListItems.length;
         fontListItemHeight = fontListItemHeight || $fontListItems.first().outerHeight();
         fontListDivHeight = fontListDivHeight || $(this).height();
-        var scrollTop = $(this).scrollTop();
 
-        if(fontListItemHeight * fontListItemCount - scrollTop < fontListDivHeight) {
+        if($(this)[0].scrollHeight - $(this).scrollTop() <= fontListDivHeight) {
             createFontListItems(10, fontListItemCount);
         }
     });

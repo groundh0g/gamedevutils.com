@@ -12,6 +12,10 @@ showTitle: false
     var widgets = [];
     var widgetListeners = [];
 
+    var fontListItemHeight = 0;
+    var fontListDivHeight = 0;
+    var suppressLoadOnScroll = false;
+
     var onWidgetValueChanging = function(name, value) {
         for(var key in widgetListeners) {
             widgetListeners[key](name, value);

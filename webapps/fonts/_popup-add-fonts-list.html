@@ -65,6 +65,7 @@
     }
 
     var clearFontListItems = function() {
+        suppressLoadOnScroll = false;
         $("#divFontListItems").empty();
     };
 
@@ -80,6 +81,7 @@
             GoogleFonts.LoadFont(item, true);
         }
 
+        var text = $("#txtFontPreviewText").val() || "The quick brown fox jumped over the lazy dog.";
         var fontInfo = GoogleFonts.DecodeFvd(fvd);
         var $div = $("<div/>")
             .addClass("fontListItem")
@@ -88,7 +90,8 @@
             .addClass(GoogleFonts.ClassNameForFontName(item.family))
             .addClass(item.loaded ? "" : "not-loaded")
             .css("font-family", name)
-            .text("The quick brown fox jumped over the lazy dog.");
+            .css("font-size", ($("#txtFontSize").val() || 30) + "pt")
+            .text(text);
         $div.find(".fontListItemLabel")
             .text(name + ", " + fontInfo["font-weight-numeric"] + " " + fontInfo["font-style"]);
         $("#divFontListItems").append($div);

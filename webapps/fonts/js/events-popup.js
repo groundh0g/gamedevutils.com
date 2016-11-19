@@ -20,27 +20,21 @@
  THE SOFTWARE.
  */
 
-fontFilters = {
+var fontFilters = {
     txtFontSearch: "",
     ddlFontCategory: "All",
     ddlFontSuggestions: "All",
     ddlFontSubsets: "All"
 };
 
+var resizeFontPreview;
+var updateFontPreviewText;
+var searchFonts;
+
 $(document).ready(function(){
     "use strict";
 
-    var refreshFontList = function(count){
-        clearFontListItems();
-        setTimeout(function(){
-            var showAllFontsAtOnce = false;
-            showAllFontsAtOnce |= (fontFilters.txtFontSearch !== "");
-            showAllFontsAtOnce |= (fontFilters.ddlFontCategory !== "All");
-            showAllFontsAtOnce |= (fontFilters.ddlFontSuggestions !== "All");
-            showAllFontsAtOnce |= (fontFilters.ddlFontSubsets !== "All");
-            createFontListItems(count || (showAllFontsAtOnce ? 99999 : 10));
-        }, 0);
-    };
+    var SHOW_ALL_FONTS = 99999;
 
     widgetListeners.push(function(name, val){
         switch(name) {
@@ -48,23 +42,27 @@ $(document).ready(function(){
             case "ddlFontSuggestions":
             case "ddlFontSubset":
                 fontFilters[name] = val;
-                refreshFontList();
+                refreshFontList(val !== "All" ? SHOW_ALL_FONTS : undefined);
                 break;
             case "ddlFontSortBy":
                 if($("#" + name).val() !== val) {
                     GoogleFonts.SortFontList(val);
-                    refreshFontList();
+                    refreshFontList(suppressLoadOnScroll ? SHOW_ALL_FONTS : undefined);
                 }
                 break;
         }
     });
 
-    $("txtFontSearch").keypress(function(e){
-        if(e.which === 13) {
-            fontFilters.txtFontSearch = $(this).val();
-            refreshFontList();
+    searchFonts = function(text) {
+        var val = $("#txtFontSearch").val();
+        if(text === undefined) {
+            text = val;
         }
-    });
+
+        $("#txtFontSearch").val(text);
+        fontFilters.txtFontSearch = text;
+        refreshFontList(text.length > 0 ? SHOW_ALL_FONTS : undefined);
+    };
 
     $("#cmdFontToggleDark").click(function () {
         var $div = $("#divFontListItems");
@@ -75,6 +73,36 @@ $(document).ready(function(){
         }
     });
 
+    resizeFontPreview = function(size) {
+        var $txtFontSize = $("#txtFontSize");
+        size = size || $txtFontSize.val() || 30;
+        if(!$.isNumeric(size)) {
+            size = 30;
+        }
+
+        if(size != $txtFontSize.val()) {
+            $txtFontSize.val(size);
+        }
+
+        fontListItemHeight = fontListItemHeight || $("div.fontListItem").first().outerHeight();
+        $("#divFontListItems .fontListItem .fontListItemText").css("font-size", size + "pt");
+    };
+
+    updateFontPreviewText = function(text) {
+        var $txtFontPreviewText = $("#txtFontPreviewText");
+        text = text || $txtFontPreviewText.val() || "The quick brown fox jumped over the lazy dog.";
+        if(text !== $txtFontPreviewText.val()) {
+            $txtFontPreviewText.val(text);
+        }
+        $("#divFontListItems .fontListItem .fontListItemText").text(text);
+    };
+
+    var refreshFontList = function(count, start){
+        clearFontListItems();
+        suppressLoadOnScroll = (count === SHOW_ALL_FONTS);
+        setTimeout(function(){ createFontListItems(count, start); }, 0);
+    };
+
     $("#cmdFontResetOptions").click(function () {
         $("#ddlFontCategory").text("All");
         $("#ddlFontSuggestions").text("All");
@@ -83,8 +111,17 @@ $(document).ready(function(){
             $("#ddlFontSortBy").text("popularity");
             GoogleFonts.SortFontList("popularity");
         }
-        $("#txtFontSearch").val("");
-        refreshFontList();
+
+        fontFilters = {
+            txtFontSearch: "",
+            ddlFontCategory: "All",
+            ddlFontSuggestions: "All",
+            ddlFontSubsets: "Latin"
+        };
+
+        updateFontPreviewText("The quick brown fox jumped over the lazy dog.");
+        resizeFontPreview(30);
+        searchFonts("");
     });
 
     $("#cmdFontRefresh").click(function(){
