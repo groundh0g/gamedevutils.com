@@ -30,7 +30,7 @@ var Console = new (function() {
     this.LOG_WARN = "WARN";
 
     // ** DEBUG MODE **
-    this.isDebug = true;
+    this.isDebug = false; // true;
 
     var self = this;
     var logEntries = [];
