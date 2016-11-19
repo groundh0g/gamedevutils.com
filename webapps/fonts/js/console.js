@@ -89,7 +89,7 @@ var Console = new (function() {
         $lbl.text(self.count()).show();
     };
 
-    this.debug = function(msg, ex) { if(this.isDebug) log(this.LOG_DEBUG, msg, ex); };
+    this.debug = function(msg, ex) {}; // { if(this.isDebug) log(this.LOG_DEBUG, msg, ex); };
     this.error = function(msg, ex) { log(this.LOG_ERROR, msg, ex); };
     this.info  = function(msg, ex) { log(this.LOG_INFO,  msg, ex); };
     this.warn  = function(msg, ex) { log(this.LOG_WARN,  msg, ex); };
