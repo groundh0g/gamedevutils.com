@@ -190,3 +190,8 @@ body {
     color: #ddd;
     background-color: #eee;
 }
+
+.search-term {
+    background-color: yellow;
+    color: black;
+}

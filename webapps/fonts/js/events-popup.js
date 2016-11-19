@@ -61,7 +61,13 @@ $(document).ready(function(){
 
         $("#txtFontSearch").val(text);
         fontFilters.txtFontSearch = text;
-        refreshFontList(text.length > 0 ? SHOW_ALL_FONTS : undefined);
+        var count = text.length > 0 ? SHOW_ALL_FONTS : undefined;
+        refreshFontList(count, undefined, function() {
+            $("#divFontListItems .fontListItem .fontListItemButtons span.fontListItemLabel")
+                .each(function() {
+                    $(this).html($(this).text().replace(new RegExp(text, "gi"), "<span class='search-term'>$&</span>"));
+                });
+        });
     };
 
     $("#cmdFontToggleDark").click(function () {
@@ -97,10 +103,13 @@ $(document).ready(function(){
         $("#divFontListItems .fontListItem .fontListItemText").text(text);
     };
 
-    var refreshFontList = function(count, start){
+    var refreshFontList = function(count, start, afterCreate){
         clearFontListItems();
         suppressLoadOnScroll = (count === SHOW_ALL_FONTS);
-        setTimeout(function(){ createFontListItems(count, start); }, 0);
+        setTimeout(function(){
+            createFontListItems(count, start);
+            if(afterCreate) { afterCreate(); }
+        }, 0);
     };
 
     $("#cmdFontResetOptions").click(function () {
