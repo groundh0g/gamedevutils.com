@@ -1,0 +1,12 @@
+#paneLeft {
+    border:1px solid #000;
+    position:absolute;
+    top:95px;
+    bottom:0;
+    left:0;
+    width:200px;
+    background-color:#ddd;
+    color: #333;
+    overflow:auto;
+    padding:5px;
+}

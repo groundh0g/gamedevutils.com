@@ -1,0 +1,13 @@
+#paneWorkspace {
+    border:1px solid #000;
+    position:absolute;
+    top:140px;
+    bottom:0;
+    right:300px;
+    left:200px;
+    background-color:#888;
+    color:#333;
+    overflow:auto;
+    padding:5px;
+}
+

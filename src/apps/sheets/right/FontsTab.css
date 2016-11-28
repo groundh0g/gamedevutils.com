@@ -1,0 +1,31 @@
+.fontsTabWrapper {
+    position:absolute;
+    margin:5px;
+    margin-top:0;
+    top:50px;
+    bottom:0;
+    left:0;
+    right:0;
+    width:290px;
+    /*background-color: red;*/
+}
+
+.fontsTabContent {
+    position:absolute;
+    top:35px;
+    overflow:auto;
+    margin:5px;
+    bottom:0;
+    right:0;
+    width:280px;
+    /*background-color: blue;*/
+}
+
+.fontsTabToolbar {
+    background-color:#eee;
+    margin-bottom:5px;
+}
+
+.fontsTabContent .list-group-item {
+    margin-bottom: 5px;
+}

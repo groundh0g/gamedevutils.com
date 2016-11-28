@@ -1,0 +1,26 @@
+.option-label-big, .option-label,
+.option-label-big-light, .option-label-light {
+    font-size: 0.75em;
+    font-weight: bolder;
+    margin-top: 5px;
+}
+
+.option-label-big, .option-label-big-light {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 1.3em;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.option-label-big-light, .option-label-light {
+    color: #fff;
+}
+
+.option-label-big-light {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}

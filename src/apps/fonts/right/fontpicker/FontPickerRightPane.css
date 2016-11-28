@@ -1,0 +1,7 @@
+#fontPickerRightPane {
+    margin: 5px;
+}
+
+#fontPickerRightPane .list-group .list-group-item {
+    margin-bottom: 5px;
+}

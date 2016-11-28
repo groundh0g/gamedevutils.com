@@ -1,0 +1,11 @@
+#workspaceToolbar {
+    border:1px solid #000;
+    position:absolute;
+    right:300px;
+    left:200px;
+    top:95px;
+    height:46px;
+    background-color:#667;
+    color:#fff;
+    padding:5px;
+}

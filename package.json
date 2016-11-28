@@ -1,0 +1,24 @@
+{
+  "name": "gdu",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-addons-test-utils": "^15.4.1",
+    "react-scripts": "0.7.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "react": "^15.4.0",
+    "react-bootstrap": "^0.30.6",
+    "react-dom": "^15.4.0",
+    "webfontloader": "^1.6.26"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "coverage": "npm test -- --coverage --coverageDirectory coverage",
+    "eject": "react-scripts eject"
+  }
+}

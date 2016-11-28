@@ -1,0 +1,11 @@
+.modal-wide {
+    width: 66% !important;
+    max-height:100%;
+}
+
+.modal-wider {
+    width: 90% !important;
+    max-height:100%;
+}
+
+.modal-normal { }
