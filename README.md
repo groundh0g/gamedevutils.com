@@ -1,3 +1,6 @@
+[![Build Status](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg)](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg?branch=react)
+
+
 ## What is GameDevUtils.com?
 
 [GameDevUtils.com](http://gamedevutils.com/) is a suite of tools that I developed for my game programming students. There are certainly better products out there, but I wanted my students to have access to free tools and, more importantly, access to the source code for those tools. I also didn't want the tools to look like poop that was designed in the 80's.
