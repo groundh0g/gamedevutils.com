@@ -14,4 +14,4 @@ install:
 
 script:
 - CI=true npm test
-- CI=true npm test -- --coverage
+- CI=true npm test -- --coverage --coverageDirectory coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "coveralls": "^2.11.15",
     "react-addons-test-utils": "^15.4.1",
     "react-scripts": "0.7.0"
   },
