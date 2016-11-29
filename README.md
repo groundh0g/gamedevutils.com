@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg)](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg?branch=react)
+[![Build Status](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg?branch=react)](https://api.travis-ci.org/groundh0g/gamedevutils.com.svg?branch=react) [![Coverage Status](https://coveralls.io/repos/github/groundh0g/gamedevutils.com/badge.svg?branch=react)](https://coveralls.io/github/groundh0g/gamedevutils.com?branch=react)
 
 
 ## What is GameDevUtils.com?

@@ -13,7 +13,5 @@ install:
   - npm install
 
 script:
-- CI=true npm test
-
-after_success:
-- CI=true npm test -- --coverage | coveralls
+  - CI=true npm test
+  - CI=true npm test -- --coverage | coveralls
