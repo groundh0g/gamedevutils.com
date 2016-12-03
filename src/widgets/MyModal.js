@@ -18,13 +18,13 @@ class MyModal extends React.Component {
 
     dialogClassName() {
         if(this.props.big) return "modal-wide";
-        if(this.props.biger) return "modal-wider";
+        // if(this.props.biger) return "modal-wider";
         return "modal-normal";
     }
 
     dialogModalHeight() {
         if(this.props.tall) return {height:'400px'};
-        if(this.props.taller) return {height:'500px'};
+        // if(this.props.taller) return {height:'500px'};
         return {};
     }
 

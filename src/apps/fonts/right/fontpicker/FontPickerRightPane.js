@@ -10,42 +10,40 @@ class FontPickerRightPane extends React.Component {
     static FontListItemId = 0;
     static $root;
 
-    componentDidMount() {
-        FontPickerRightPane.addFontListItem({family:'Luckiest Guy'});
-        FontPickerRightPane.addFontListItem({family:'Montserrat'});
-        FontPickerRightPane.addFontListItem({family:'Muli'});
-        FontPickerRightPane.addFontListItem({family:'Helvetica'});
-        FontPickerRightPane.addFontListItem({family:'Gochi Hand'});
-    }
+    static SearchText = "";
 
     render() {
         return (
             <div id="fontPickerRightPane">
-                <div className="list-group">
+                <div id="divFontListItems" className="list-group">
                 </div>
             </div>
         );
     }
 
+    static headingHTML(text) {
+        return (text || "").replace(new RegExp(FontPickerRightPane.SearchText, 'gi'), '<span class="searchHighlight">$&</span>');
+    }
+
     static addFontListItem(font, weight, style, size, $root) {
         $root = $root || FontPickerRightPane.$root || $('#fontPickerRightPane').parent();
         weight = weight || 400;
-        style = style || 'NORMAL';
-        size = size || 30;
+        style = style || 'Normal';
+        size = (size || '30pt');
         let template = (
             <div className="list-group-item">
-                <h4 className="list-group-item-heading"><strong><span className="font-list-item-family">{font.family}</span></strong>&nbsp;&nbsp;&nbsp;<span style={{color:'#ccc'}}><span className="font-list-item-weight">{weight}</span> <span className="font-list-item-style">{style}</span>, <span className="font-list-item-size">{size}pt</span></span><span className="font-list-item-font-id" style={{display:'none'}}>{FontPickerRightPane.FontListItemId}</span></h4>
+                <h4 className="list-group-item-heading"><strong><span className="font-list-item-family" dangerouslySetInnerHTML={{__html: FontPickerRightPane.headingHTML(font.family)}} /></strong>&nbsp;&nbsp;&nbsp;<span style={{color:'#ccc'}}><span className="font-list-item-weight">{weight}</span> <span className="font-list-item-style">{style}</span>, <span className="font-list-item-size">{size}pt</span></span><span className="font-list-item-font-id" style={{display:'none'}}>{FontPickerRightPane.FontListItemId}</span></h4>
                 <div className="list-group-item-text" style={{width:'100%'}}>
                     <div style={{
                         whiteSpace:'nowrap',
                         fontFamily: font.family,
-                        fontSize: size + 'pt',
-                        fontWeight: {weight},
+                        fontSize: size,
+                        fontWeight: weight,
                         right:0,
                         overflow:'scroll'}}><span className="font-list-item-preview-text">The quick, brown fox jumps over the lazy dog.</span></div>
                     <ButtonToolbar>
                         <ButtonGroup bsSize="small">
-                            <Button onClick={(e) => { FontPickerRightPane.handleClick(e, "cog"); }} title="Change size, style, and weight."><Glyphicon glyph="cog" /></Button>
+                            <Button disabled title="Change size, style, and weight."><Glyphicon glyph="cog" /></Button>
                             <Button onClick={(e) => { FontPickerRightPane.handleClick(e, "add"); }} title="Add this font to the project."><Glyphicon glyph="plus" /></Button>
                         </ButtonGroup>
                     </ButtonToolbar>

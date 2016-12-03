@@ -95,13 +95,6 @@ class ConsoleTab extends React.Component {
                     </ButtonToolbar>
                 </div>
                 <div className="consoleTabContent">
-                    <ButtonGroup bsSize="small">
-                        <Button onClick={/* istanbul ignore next */(e) => ConsoleTab.addConsoleEntry(ConsoleTab.TYPE.DEBUG,   "This is a debug message.")}>Debug</Button>
-                        <Button onClick={/* istanbul ignore next */(e) => ConsoleTab.addConsoleEntry(ConsoleTab.TYPE.WARNING, "This is a warning message.")}>Warn</Button>
-                        <Button onClick={/* istanbul ignore next */(e) => ConsoleTab.addConsoleEntry(ConsoleTab.TYPE.INFO,    "This is an info message.")}>Info</Button>
-                        <Button onClick={/* istanbul ignore next */(e) => ConsoleTab.addConsoleEntry(ConsoleTab.TYPE.ERROR,   "This is an error message.", new Error("Some error occurred."))}>Error</Button>
-                        <Button onClick={/* istanbul ignore next */(e) => ConsoleTab.addConsoleEntry(ConsoleTab.TYPE.SUCCESS, "This is a success message.")}>Success</Button>
-                    </ButtonGroup>
                     <ListGroup>
                         {this.state.items.map((item) => {
                                 if (this.showMessageForType(item.type)) {

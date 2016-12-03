@@ -2,6 +2,7 @@ import React from 'react';
 import { ButtonToolbar, ButtonGroup, Button, Glyphicon, InputGroup, FormGroup, Form } from 'react-bootstrap';
 import $ from 'jquery';
 import { OptionLabel, OptionTextbox, OptionDropdown } from '../../../../widgets/Widgets';
+import { GoogleFonts } from '../../GoogleFonts';
 import './FontPickerLeftPane.css';
 
 class FontPickerLeftPane extends React.Component {
@@ -13,18 +14,35 @@ class FontPickerLeftPane extends React.Component {
     static isDirty = false;
 
     static $root;
-    // static $instance;
-    //
-    // constructor(props) {
-    //     super(props);
-    //     FontPickerLeftPane.$instance = this;
-    // }
+    static $instance;
+
+    constructor(props) {
+        super(props);
+        FontPickerLeftPane.$instance = this;
+        this.state = {
+            Options: FontPickerLeftPane.Options
+        };
+    }
+
+    static _changeListeners = [];
+
+    static RegisterChangeListener(callback) {
+        FontPickerLeftPane._changeListeners.push(callback);
+    }
+
+    static OnChange(id, key, newValue) {
+        for(let i = 0; i < FontPickerLeftPane._changeListeners.length; i++) {
+            FontPickerLeftPane._changeListeners[i](id, key, newValue);
+        }
+    }
 
     componentDidMount() {
-        let options = FontPickerLeftPane.readOptions();
-        FontPickerLeftPane.DefaultOptions = FontPickerLeftPane.copyOptions(options);
-        FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(options);
-        FontPickerLeftPane.isDirty = false;
+        if(FontPickerLeftPane.DefaultOptions['search'] === undefined) {
+            let options = FontPickerLeftPane.readOptions();
+            FontPickerLeftPane.DefaultOptions = FontPickerLeftPane.copyOptions(options);
+            FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(options);
+            FontPickerLeftPane.isDirty = false;
+        }
     }
 
     render() {
@@ -32,27 +50,48 @@ class FontPickerLeftPane extends React.Component {
             <div id={FontPickerLeftPane.PANE_ID} className="paneGroup">
 
                 <OptionLabel light text="Search" />
-                <OptionTextbox id="txtFontPickerSearch" defaultValue="" placeholder="Font Name" icon="search" onChange={FontPickerLeftPane.handleChange} />
+                <OptionTextbox
+                    id="txtFontPickerSearch"
+                    value={this.state.Options["search"] || ""}
+                    placeholder="Font Name"
+                    icon="search"
+                    onChange={FontPickerLeftPane.handleChange} />
 
                 <OptionLabel light text="Category" />
-                <OptionDropdown id="ddlFontPickerCategory" fullWidth onChange={FontPickerLeftPane.handleChange} tooltip="Filter the list of fonts to the selected category.">
+
+                <OptionDropdown
+                    id="ddlFontPickerCategory"
+                    value={this.state.Options["category"]}
+                    fullWidth
+                    onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
+                    tooltip="Filter the list of fonts to the selected category.">
                     <li default>All</li>
                     <li>Display</li>
-                    <li>Handwriting</li>
+                    <li><span>Handwriting</span></li>
                     <li>Monospace</li>
                     <li>Sans-Serif</li>
                     <li>Serif</li>
                 </OptionDropdown>
 
                 <OptionLabel light text="Suggestions" />
-                <OptionDropdown id="ddlFontPickerSuggestions" fullWidth onChange={FontPickerLeftPane.handleChange} tooltip="">
+                <OptionDropdown
+                    id="ddlFontPickerSuggestions"
+                    value={this.state.Options["suggestions"]}
+                    fullWidth
+                    onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
+                    tooltip="">
                     <li default>All</li>
                     <li>Headings</li>
                     <li>Paragraphs</li>
                 </OptionDropdown>
 
                 <OptionLabel light text="Subset" />
-                <OptionDropdown id="ddlFontPickerSubset" fullWidth onChange={FontPickerLeftPane.handleChange} tooltip="">
+                <OptionDropdown
+                    id="ddlFontPickerSubset"
+                    value={this.state.Options["subset"]}
+                    fullWidth
+                    onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
+                    tooltip="">
                     <li>Arabic</li>
                     <li>Cyrillic</li>
                     <li>Cyrillic Extended</li>
@@ -70,7 +109,12 @@ class FontPickerLeftPane extends React.Component {
                 </OptionDropdown>
 
                 <OptionLabel light text="SortBy" />
-                <OptionDropdown id="ddlFontPickerSortBy" fullWidth onChange={FontPickerLeftPane.handleChange} tooltip="">
+                <OptionDropdown
+                    id="ddlFontPickerSortBy"
+                    value={this.state.Options["sortBy"]}
+                    fullWidth
+                    onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
+                    tooltip="">
                     <li>category</li>
                     <li>family</li>
                     <li>lastModified</li>
@@ -80,9 +124,9 @@ class FontPickerLeftPane extends React.Component {
                 <OptionLabel light text="Display" />
                 <ButtonToolbar>
                     <ButtonGroup bsSize="small">
-                        <Button id="cmdFontPickerToggleDark"><Glyphicon glyph="adjust" /></Button>
-                        <Button id="cmdFontPickerResetOptions"><Glyphicon glyph="repeat" /></Button>
-                        <Button id="cmdFontPickerRefresh"><Glyphicon glyph="refresh" /></Button>
+                        <Button id="cmdFontPickerToggleDark" onClick={(e) => {this.handleClick(e);}}><Glyphicon glyph="adjust" /></Button>
+                        <Button id="cmdFontPickerResetOptions" onClick={(e) => {this.handleClick(e);}}><Glyphicon glyph="repeat" /></Button>
+                        <Button id="cmdFontPickerRefresh" onClick={(e) => {this.handleClick(e);}}><Glyphicon glyph="refresh" /></Button>
                     </ButtonGroup>
                     <ButtonGroup bsSize="small">
                         <Form inline>
@@ -92,14 +136,14 @@ class FontPickerLeftPane extends React.Component {
                                         id="txtFontPickerPreviewSize"
                                         className="form-control"
                                         type="text"
-                                        defaultValue="30"
+                                        value={this.state.Options["previewSize"] || '32'}
                                         placeholder="Size"
                                         style={{ margin:0, width:'50px' }}
-                                        onChange={FontPickerLeftPane.handleChange}
+                                        onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
                                     />
                                     <span className="input-group-addon">
-                                <Glyphicon glyph="resize-vertical"/>
-                            </span>
+                                        <Glyphicon glyph="resize-vertical"/>
+                                    </span>
                                 </InputGroup>
                             </FormGroup>
                         </Form>
@@ -107,7 +151,14 @@ class FontPickerLeftPane extends React.Component {
                 </ButtonToolbar>
 
                 <OptionLabel light text="Preview Text" />
-                <OptionTextbox id="txtFontPickerPreviewText" defaultValue="The quick, brown fox jumps over the lazy dog." placeholder="Preview Text" icon="share-alt" onChange={FontPickerLeftPane.handleChange} />
+                <OptionTextbox
+                    id="txtFontPickerPreviewText"
+                    value={this.state.Options["previewText"] || 'The quick, brown fox jumps over the lazy dog.'}
+                    placeholder="Preview Text"
+                    icon="share-alt"
+                    onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}} />
+
+                <span style={{display:'none'}}>{"" + this.state.foo}</span>
 
 
                 <br/><br/><br/><br/>
@@ -115,9 +166,54 @@ class FontPickerLeftPane extends React.Component {
         );
     }
 
+    static ResetOptions() {
+        FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(FontPickerLeftPane.DefaultOptions);
+
+        // TODO: These feel like hacks. See why children aren't rendering on parent setState().
+        // FontPickerLeftPane.writeOptions(FontPickerLeftPane.Options);
+        OptionDropdown.$instances["ddlFontPickerCategory"].setText(FontPickerLeftPane.Options["category"]);
+        OptionDropdown.$instances["ddlFontPickerSuggestions"].setText(FontPickerLeftPane.Options["suggestions"]);
+        OptionDropdown.$instances["ddlFontPickerSubset"].setText(FontPickerLeftPane.Options["subset"]);
+        OptionDropdown.$instances["ddlFontPickerSortBy"].setText(FontPickerLeftPane.Options["sortBy"]);
+        $("#txtFontPickerSearch").val(FontPickerLeftPane.Options["search"]);
+
+        GoogleFonts.SortFontList(FontPickerLeftPane.Options["sortBy"]);
+
+        FontPickerLeftPane.$instance.setState({});
+        FontPickerLeftPane.OnChange("txtFontPickerSearch", "search");
+    }
+
+    handleClick(e) {
+        let id = e.target.id || e.target.parentElement.id;
+        switch(id) {
+            case 'cmdFontPickerToggleDark':
+                let $div = $('#divFontListItems');
+                if($div.hasClass('dark')) {
+                    $div.removeClass('dark');
+                } else {
+                    $div.addClass('dark');
+                }
+                break;
+            case 'cmdFontPickerResetOptions':
+                FontPickerLeftPane.ResetOptions();
+                e.preventDefault();
+                break;
+            case 'cmdFontPickerRefresh':
+                $("#fontPickerRightPane").find("#divFontListItems").empty();
+                setTimeout(() => {
+                    FontPickerLeftPane.OnChange(id, 'search');
+                }, 0);
+                break;
+            /* istanbul ignore next */
+            default:
+                break;
+        }
+    }
+
     static handleChange(id, newValue, oldValue) {
         let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
         FontPickerLeftPane.Options[key] = FontPickerLeftPane.tryParseNumber(newValue);
+        FontPickerLeftPane.OnChange(id, key, newValue);
     }
 
     static getOptionKeyFromControlId(id) {
@@ -151,22 +247,26 @@ class FontPickerLeftPane extends React.Component {
         $root.find("input").each((index, obj) => {
             let $obj = $(obj);
             let id = $obj.attr("id");
-            let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
-            let val = $obj.val().trim();
-            val = FontPickerLeftPane.tryParseNumber(val);
-            /* istanbul ignore else */
-            if(key) { options[key] = val; }
+            if(id && id.substring(0,3) === 'txt') {
+                let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
+                let val = $obj.val().trim();
+                val = FontPickerLeftPane.tryParseNumber(val);
+                /* istanbul ignore else */
+                if(key) { options[key] = val; }
+            }
         });
 
         // grab values from drop downs
         $root.find("button").each((index, obj) => {
             let $obj = $(obj);
             let id = $obj.attr("id");
-            let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
-            let val = $obj.text().trim();
-            val = FontPickerLeftPane.tryParseNumber(val);
-            /* istanbul ignore else */
-            if(key) { options[key] = val; }
+            if(id && id.substring(0,3) === 'ddl') {
+                let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
+                let val = $obj.text().trim();
+                val = FontPickerLeftPane.tryParseNumber(val);
+                /* istanbul ignore else */
+                if(key) { options[key] = val; }
+            }
         });
 
         return options;
@@ -180,20 +280,24 @@ class FontPickerLeftPane extends React.Component {
             $root.find("input").each((index, obj) => {
                 let $obj = $(obj);
                 let id = $obj.attr("id");
-                let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
-                let val = options[key];
-                /* istanbul ignore else */
-                if(val !== undefined) { $obj.val(val); }
+                if(id && id.substring(0,3) === 'txt') {
+                    let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
+                    let val = options[key];
+                    /* istanbul ignore else */
+                    if(val !== undefined) { $obj.val(val); }
+                }
             });
 
             // push values to drop downs
             $root.find("button").each((index, obj) => {
                 let $obj = $(obj);
                 let id = $obj.attr("id");
-                let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
-                let val = options[key];
-                /* istanbul ignore else */
-                if(val !== undefined) { $obj.text(val); }
+                if(id && id.substring(0,3) === 'ddl') {
+                    let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
+                    let val = options[key];
+                    /* istanbul ignore else */
+                    if(val !== undefined) { $obj.html(val + ' <span class="caret"></span>'); }
+                }
             });
         }
     }

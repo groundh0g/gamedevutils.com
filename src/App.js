@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import MainNavbar from './MainNavbar';
 import FontsApp from './apps/fonts/FontsApp';
-import SheetsApp from './apps/sheets/SheetsApp';
+// import SheetsApp from './apps/sheets/SheetsApp';
 
 class App extends React.Component {
     static QueryHash = {};
@@ -23,7 +23,9 @@ class App extends React.Component {
                 return (
                     <div>
                         <MainNavbar />
-                        <SheetsApp />
+                        <div>
+                            <img src={process.env.PUBLIC_URL + "/iconSpriteSheets@2x.png"} alt="" />
+                        </div>
                     </div>
                 );
             case 'tiles':

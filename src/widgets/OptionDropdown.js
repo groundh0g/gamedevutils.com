@@ -2,20 +2,29 @@ import React from 'react';
 import { DropdownButton, InputGroup, MenuItem } from 'react-bootstrap'
 
 class OptionDropdown extends React.Component {
+    // TODO: Only used by FontPickerLeftPane to force redraw of children. Feel like a hack. Investigate.
+    static $instances;
+
     constructor(props) {
         super(props);
-        let defaultValue = this.calcDefaultValue();
         this.state = {
-            text: defaultValue,
-            defaultValue: defaultValue
+            text: undefined,
+            defaultValue: this.props.defaultValue || this.calcDefaultValue()
         };
+
+        OptionDropdown.$instances = OptionDropdown.$instances || {};
+        OptionDropdown.$instances[this.props.id] = this;
+    }
+
+    setText(text) {
+        this.setState({text: text});
     }
 
     calcDefaultValue() {
-        var items = this.props.children;
-        var result = items.length > 0 ? "" + items[0].props.children : undefined;
-        for(var i = 0; i < items.length; i++) {
-            var item = items[i];
+        let items = this.props.children;
+        let result = items.length > 0 ? "" + items[0].props.children : undefined;
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
             if(item.props.default) {
                 result = "" + item.props.children;
                 break;
@@ -40,7 +49,7 @@ class OptionDropdown extends React.Component {
                 style={this.props.fullWidth ? { width:"100%" } : { }}
                 id={this.props.id}
                 ref={this.props.id}
-                title={this.state.text}
+                title={this.state.text !== undefined ? this.state.text : this.state.defaultValue}
                 onSelect={ (key, e) => { this.handleSelect(key, e); }} >
                 {this.props.children.map((item, index) => {
                     return (

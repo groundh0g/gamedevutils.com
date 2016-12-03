@@ -62,7 +62,7 @@ describe('Main Navbar', () => {
         popup.Show = oldFunction;
     });
 
-    xit('dismisses dialog when footer button is clicked', (done) => {
+    it('dismisses dialog when footer button is clicked', (done) => {
         let oldShow = AboutTheLibraries.Show;
         let oldClose = MyModal.Close;
         let mockShow = jest.fn(() => { MyModal.Show("AboutTheLibraries"); });
@@ -75,15 +75,15 @@ describe('Main Navbar', () => {
         expect(mockShow).toBeCalled();
 
         return new Promise((resolve) => {
-            setTimeout(() => { resolve(); }, 1100);
+            setTimeout(() => { resolve(); }, 0);
         }).then(() => {
             let dismissButton = $(document).find("#AboutTheLibraries").find("div.modal-footer").find("button").get(0);
             ReactTestUtils.Simulate.click(dismissButton);
-            console.log(" before expect(mockClose).toBeCalled() ");
+            // console.log(" before expect(mockClose).toBeCalled() ");
             try {
                 expect(mockClose).toBeCalled();
             } catch(e) { console.log(e); return; }
-            console.log(" after expect(mockClose).toBeCalled() ");
+            // console.log(" after expect(mockClose).toBeCalled() ");
             AboutTheLibraries.Show = oldShow;
             MyModal.Close = oldClose;
             done();
@@ -91,7 +91,7 @@ describe('Main Navbar', () => {
 
     });
 
-    xit('dismisses dialog when header "X" button is clicked', (done) => {
+    it('dismisses dialog when header "X" button is clicked', (done) => {
         let oldShow = AboutTheLibraries.Show;
         let oldClose = MyModal.Close;
         let mockShow = jest.fn(() => { MyModal.Show("AboutTheLibraries"); });
@@ -104,15 +104,15 @@ describe('Main Navbar', () => {
         expect(mockShow).toBeCalled();
 
         return new Promise((resolve) => {
-            setTimeout(() => { resolve(); }, 1100);
+            setTimeout(() => { resolve(); }, 0);
         }).then(() => {
             let dismissButton = $(document).find("#AboutTheLibraries").find("div.modal-header").find("button").get(0);
             ReactTestUtils.Simulate.click(dismissButton);
-            console.log(" before expect(mockClose).toBeCalled() ");
+            // console.log(" before expect(mockClose).toBeCalled() ");
             try {
                 expect(mockClose).toBeCalled();
             } catch(e) { console.log(e); return; }
-            console.log(" after expect(mockClose).toBeCalled() ");
+            // console.log(" after expect(mockClose).toBeCalled() ");
             AboutTheLibraries.Show = oldShow;
             MyModal.Close = oldClose;
             done();

@@ -1,7 +1,6 @@
 import React from 'react';
-// import $ from 'jquery';
+import $ from 'jquery';
 import { ButtonGroup, ButtonToolbar, Button, ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
-// import ButtonToggle from '../../widgets/ButtonToggle';
 import FontPicker from './fontpicker/FontPicker';
 import './FontsTab.css';
 import '../../../polyfill';
@@ -41,9 +40,7 @@ class FontsTab extends React.Component {
                         </ButtonGroup>
                         <ButtonGroup>
                             <Button onClick={(e) => {
-                                FontsTab.addFont({
-                                    family: ["Muli", "Montserrat", "Luckiest Guy", "Roboto", "Open Sans", "Lato", "Oswald"][Math.floor(Math.random() * 7)]
-                                });
+                                FontPicker.Show();
                                 FontsTab.blurButton(e);
                             }} id="cmdFontAdd" title="Add a font."><Glyphicon glyph="plus" /></Button>
                             <Button onClick={(e) => {
@@ -51,18 +48,12 @@ class FontsTab extends React.Component {
                                 FontsTab.blurButton(e);
                             }} id="cmdFontRemove" title="Remove selected font(s)."><Glyphicon glyph="remove" /></Button>
                         </ButtonGroup>
-                        <ButtonGroup>
-                            <Button onClick={(e) => {
-                                FontPicker.Show();
-                                FontsTab.blurButton(e);
-                            }} id="cmdFontTEST" title="Show Font Picker dialog."><Glyphicon glyph="fire" /></Button>
-                        </ButtonGroup>
                     </ButtonToolbar>
                 </div>
                 <div className="fontsTabContent">
                     <ListGroup>
                         {this.state.items.map((item) => {
-                                let display = `${item.displayName}, ${item.displayWeight} ${item.displayStyle} @ ${item.displaySize}`;
+                                let display = `${item.displayWeight} ${item.displayStyle} @ ${item.displaySize}`;
                                 let style = {
                                     whiteSpace:"nowrap",
                                     fontFamily: item.font.family,
@@ -158,8 +149,8 @@ class FontsTab extends React.Component {
     }
 
     static copyFont(font) {
-        // TODO: deep copy font.
-        return font;
+        // Deep copy
+        return $.extend(true, {}, font);
     }
 
     static getFontNameForFamily(family) {

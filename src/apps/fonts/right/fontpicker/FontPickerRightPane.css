@@ -5,3 +5,14 @@
 #fontPickerRightPane .list-group .list-group-item {
     margin-bottom: 5px;
 }
+
+.searchHighlight {
+    background-color: yellow;
+    color: black;
+}
+
+.list-group.dark .list-group-item
+{
+    background-color: black;
+    color: white;
+}

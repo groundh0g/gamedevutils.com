@@ -70,6 +70,13 @@ describe('Console', () => {
         expect(ConsoleTab.MessageHistory[0].error).toEqual(ERR1);
     });
 
+    it('logs SUCCESS messages', () => {
+        const MSG1 = "This is a success message.";
+        ConsoleTab.success(MSG1);
+        expect(ConsoleTab.MessageHistory[0].type).toEqual(ConsoleTab.TYPE.SUCCESS);
+        expect(ConsoleTab.MessageHistory[0].body).toEqual(MSG1);
+    });
+
     it('renders error ONLY when showError is active', () => {
         const MSG1 = "This is a test.";
         ConsoleTab.error(MSG1);

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 import FontsTab from './FontsTab';
+import FontPicker from './fontpicker/FontPicker';
 
 describe('Font List', () => {
 
@@ -99,7 +100,17 @@ describe('Font List', () => {
         expect($root.find(".list-group-item").length).toEqual(2);
     });
 
+    it('displays the font picker dialog on toolbar button click', () => {
+        var oldShow = FontPicker.Show;
+        FontPicker.Show = jest.fn();
+        expect($root.find(".list-group-item").length).toEqual(0);
+        // expect(() => {
+            ReactTestUtils.Simulate.click($root.find(".fontsTabToolbar").find("button").get(BUTTON_ADD_FONT));
+        // }).toThrow(new TypeError("Cannot read property 'FontPicker' of undefinedx"));
+        expect(FontPicker.Show).toBeCalled();
+        FontPicker.Show = oldShow;
+    });
+
     // TODO: test add font button
-    // TODO: kill detele all button in UI, in favor of select all and remove selected (2 steps)
 
 });
