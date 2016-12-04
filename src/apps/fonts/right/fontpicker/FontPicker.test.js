@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 import FontPicker from './FontPicker';
 import { GoogleFonts } from '../../GoogleFonts';
+import FontsTab from '../FontsTab';
+import FontPickerLeftPane from '../fontpicker/FontPickerLeftPane';
+import FontPickerRightPane from '../fontpicker/FontPickerRightPane';
 import MyModal from '../../../../widgets/MyModal';
 
 describe('FontPicker', () => {
@@ -21,6 +25,8 @@ describe('FontPicker', () => {
         $root = $(document.createElement('div')).attr("id", "wrapper");
         ReactDOM.render(<FontPicker />, $root.get(0));
         GoogleFonts.FontList = SampleData;
+        FontPickerLeftPane.Options['search'] = '';
+        FontPickerLeftPane.Options['sortBy'] = 'popularity';
     });
 
     it('does not crash when showing and closing the dialog', () => {
@@ -81,5 +87,59 @@ describe('FontPicker', () => {
 
         GoogleFonts.LoadFont = oldLoadFont;
     });
+
+    it('toggles dark and light preview', () => {
+        let $button = $('#cmdFontPickerToggleDark');
+        let $div = $('#divFontListItems');
+
+        expect($div.hasClass('dark')).toEqual(false);
+        ReactTestUtils.Simulate.click($button.get(0));
+        expect($div.hasClass('dark')).toEqual(true);
+        ReactTestUtils.Simulate.click($button.get(0));
+        expect($div.hasClass('dark')).toEqual(false);
+    });
+
+    it('adds selected font to FontsTab', () => {
+        const THE_FONT = {family:'Foo'};
+        let origFunction = FontsTab.addFont;
+        FontsTab.addFont = jest.fn();
+        FontPickerRightPane.addFontListItem(THE_FONT);
+        let $buttons = $('#fontPickerRightPane div.list-group div.list-group-item').last().find('div.list-group-item-text button');
+        ReactTestUtils.Simulate.click($buttons.get(1));
+        expect(FontsTab.addFont).toBeCalled();
+        expect(FontsTab.addFont.mock.calls[0][0].family).toEqual(THE_FONT.family);
+        FontsTab.addFont = origFunction;
+    });
+
+    it('filters the right pane based on options in left pane', () => {
+        FontPickerLeftPane.Options["search"] = "open";
+        FontPickerLeftPane.Options['category'] = "Sans-Serif";
+        FontPickerLeftPane.Options['suggestions'] = "Paragraphs";
+        FontPicker.FilterFontListItems();
+        expect(FontPicker.FilteredFontListItems.length).toEqual(1);
+        expect(FontPicker.FilteredFontListItems[0].family).toEqual('Open Sans');
+    });
+
+    it('does not filter when default options are used', () => {
+        FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(FontPickerLeftPane.DefaultOptions);
+        FontPicker.FilterFontListItems();
+        expect(FontPicker.FilteredFontListItems).toEqual(undefined);
+    });
+
+    it('filters font list on UI search', () => {
+        let $search = $('#txtFontPickerSearch');
+        $search.val('oswald');
+        ReactTestUtils.Simulate.change($search.get(0));
+        expect(FontPicker.FilteredFontListItems.length).toEqual(1);
+        expect(FontPicker.FilteredFontListItems[0].family).toEqual('Oswald');
+    });
+
+    it('sorts font list on sortBy changed', () => {
+        FontPickerLeftPane.Options['sortBy'] = 'family';
+        FontPicker.handleOptionsChanged('ddlFontPickerSortBy', 'sortBy');
+        expect(FontPicker.FilteredFontListItems).toEqual(undefined);
+        expect(GoogleFonts.FontList.items[0].family).toEqual('Lato');
+    });
+
 });
 

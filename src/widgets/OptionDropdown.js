@@ -37,6 +37,7 @@ class OptionDropdown extends React.Component {
         let oldValue = this.state.text;
         let newValue = e.target.textContent.replace(/ \*/, "");
         this.setState({ text: newValue });
+        /* istanbul ignore else */
         if(newValue !== oldValue && this.props.onChange) {
             this.props.onChange(this.props.id, newValue, oldValue);
         }

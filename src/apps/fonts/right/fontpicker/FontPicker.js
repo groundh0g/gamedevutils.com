@@ -19,7 +19,7 @@ class FontPicker extends React.Component {
         FontPicker.$instance = this;
     }
 
-    static ClearFontListItems($root) {
+    static ClearFontListItems() {
         FontPicker.SuppressLoadOnScroll = false;
         $("#fontPickerRightPane").find("#divFontListItems").empty();
     }
@@ -65,7 +65,7 @@ class FontPicker extends React.Component {
         let includeAll =
             options.search === "" &&
             options.suggestions === "All" &&
-            options.subsets === "All" &&
+            options.subset === "Latin" &&
             options.category === "All";
 
         if(includeAll) {
@@ -83,7 +83,7 @@ class FontPicker extends React.Component {
 
             doAdd &= options.search === "" || item.family.toLowerCase().includes(options.search.toLowerCase());
             doAdd &= options.suggestions === "All" || GoogleFonts.Suggestions[options.suggestions].includes(item.family);
-            doAdd &= options.subsets === "All" || item.subsets.includes(options.subset.toLowerCase());
+            doAdd &= options.subset === "All" || item.subsets.includes(options.subset.toLowerCase());
             doAdd &= options.category === "All" || item.category.toLowerCase() === options.category.toLowerCase();
 
             if(doAdd) filtered.push(item);
@@ -95,7 +95,8 @@ class FontPicker extends React.Component {
     static handleOptionsChanged(id, key, newValue) {
         if(key === 'sortBy') {
             GoogleFonts.SortFontList(FontPickerLeftPane.Options[key]);
-        } else if(key === 'search') {
+        }
+        if(key === 'search') {
             FontPickerRightPane.SearchText = FontPickerLeftPane.Options[key];
         }
 
@@ -103,7 +104,7 @@ class FontPicker extends React.Component {
             case 'search':
             case 'category':
             case 'suggestions':
-            case 'subsets':
+            case 'subset':
             case 'sortBy':
                 FontPicker.FilterFontListItems();
                 FontPicker.ClearFontListItems();

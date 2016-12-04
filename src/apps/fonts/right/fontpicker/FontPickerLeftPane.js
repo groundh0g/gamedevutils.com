@@ -13,7 +13,6 @@ class FontPickerLeftPane extends React.Component {
     static Options = { };
     static isDirty = false;
 
-    static $root;
     static $instance;
 
     constructor(props) {
@@ -238,10 +237,9 @@ class FontPickerLeftPane extends React.Component {
 
     static tryParseNumber(val) { return $.isNumeric(val) ? parseFloat(val) : val; }
 
-    static readOptions($root) {
+    static readOptions() {
         let options = { };
-
-        $root = $root || FontPickerLeftPane.$root || $(`#${FontPickerLeftPane.PANE_ID}`);
+        let $root = $(`#${FontPickerLeftPane.PANE_ID}`);
 
         // grab values from text boxes
         $root.find("input").each((index, obj) => {
@@ -272,9 +270,9 @@ class FontPickerLeftPane extends React.Component {
         return options;
     }
 
-    static writeOptions(options, $root) {
+    static writeOptions(options) {
         if(options) {
-            $root = $root || FontPickerLeftPane.$root || $(`#${FontPickerLeftPane.PANE_ID}`);
+            let $root = $(`#${FontPickerLeftPane.PANE_ID}`);
 
             // push values to text boxes
             $root.find("input").each((index, obj) => {

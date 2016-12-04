@@ -9,8 +9,6 @@ export class FontsLeftPane extends React.Component {
     static Options = { };
     static isDirty = false;
 
-    static $root;
-
     componentDidMount() {
         let options = FontsLeftPane.readOptions();
         FontsLeftPane.DefaultOptions = FontsLeftPane.copyOptions(options);
@@ -58,10 +56,10 @@ export class FontsLeftPane extends React.Component {
         return options;
     }
 
-    static readOptions($root) {
+    static readOptions() {
         let options = { };
 
-        $root = $root || this.$root || $("#paneLeft");
+        let $root = $("#paneLeft");
 
         // grab values from text boxes
         $root.find("input").each((index, obj) => {
@@ -86,10 +84,9 @@ export class FontsLeftPane extends React.Component {
         return options;
     }
 
-    static writeOptions(options, $root) {
+    static writeOptions(options) {
         if(options) {
-            $root = $root || this.$root || $("#paneLeft");
-
+            let $root = $("#paneLeft");
             // push values to text boxes
             $root.find("input").each((index, obj) => {
                 let $obj = $(obj);

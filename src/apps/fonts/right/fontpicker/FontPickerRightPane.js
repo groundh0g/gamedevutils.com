@@ -8,8 +8,6 @@ import './FontPickerRightPane.css';
 class FontPickerRightPane extends React.Component {
 
     static FontListItemId = 0;
-    static $root;
-
     static SearchText = "";
 
     render() {
@@ -25,8 +23,7 @@ class FontPickerRightPane extends React.Component {
         return (text || "").replace(new RegExp(FontPickerRightPane.SearchText, 'gi'), '<span class="searchHighlight">$&</span>');
     }
 
-    static addFontListItem(font, weight, style, size, $root) {
-        $root = $root || FontPickerRightPane.$root || $('#fontPickerRightPane').parent();
+    static addFontListItem(font, weight, style, size) {
         weight = weight || 400;
         style = style || 'Normal';
         size = (size || '30pt');
@@ -52,8 +49,8 @@ class FontPickerRightPane extends React.Component {
         );
         FontPickerRightPane.FontListItemId++;
         let $element = $("<div/>");
+        $('#fontPickerRightPane div.list-group').first().append($element);
         ReactDOM.render(template, $element.get(0));
-        $root.find('#fontPickerRightPane div.list-group').first().append($element);
     }
 
     static handleClick(e, button) {

@@ -6,17 +6,17 @@ import { FontsLeftPane } from './FontsLeftPane';
 
 describe('FontsLeftPane', () => {
 
-    let root;
+    let $root;
 
     beforeEach(() => {
-        root = document.createElement('div');
-        ReactDOM.render(<FontsLeftPane />, root);
-        FontsLeftPane.$root = $(root);
+        $root = $('<div/>').attr("id", "wrapper");
+        $(document.body).append($root);
+        ReactDOM.render(<FontsLeftPane />, $root.get(0));
     });
 
     it('creates and populates the root div', () => {
-        expect(root).not.toBeUndefined();
-        expect($(root).children("div").length).not.toEqual(0);
+        expect($root.length).not.toEqual(0);
+        expect($root.children("div").length).not.toEqual(0);
     });
 
     it('copies options', () => {
@@ -24,7 +24,7 @@ describe('FontsLeftPane', () => {
     });
 
     it('processes UI change events on text boxes', () => {
-        const $txtName = $(root).find("#txtProjectName");
+        const $txtName = $("#txtProjectName");
         const node = $txtName.get(0);
         expect($txtName.val()).toEqual("Untitled");
         $txtName.val("SuperDooperProject");
@@ -34,35 +34,35 @@ describe('FontsLeftPane', () => {
     });
 
     it('processes UI click events on dropdowns with text', () => {
-        expect($(root).find("#ddlProjectImageFormat").text().trim()).toEqual("PNG");
-        const node = $(root).find("li :contains('GIF')").get(0);
+        expect($("#ddlProjectImageFormat").text().trim()).toEqual("PNG");
+        const node = $("li :contains('GIF')").get(0);
         ReactTestUtils.Simulate.click(node);
-        expect($(root).find("#ddlProjectImageFormat").text().trim()).toEqual("GIF");
+        expect($("#ddlProjectImageFormat").text().trim()).toEqual("GIF");
     });
 
     it('processes UI click events on dropdowns with numbers', () => {
-        expect($(root).find("#ddlProjectWidth").text().trim()).toEqual("1024");
-        const node = $(root).find("li :contains('2048')").get(0);
+        expect($("#ddlProjectWidth").text().trim()).toEqual("1024");
+        const node = $("li :contains('2048')").get(0);
         ReactTestUtils.Simulate.click(node);
-        expect($(root).find("#ddlProjectWidth").text().trim()).toEqual("2048"); // string in DOM
+        expect($("#ddlProjectWidth").text().trim()).toEqual("2048"); // string in DOM
         expect(FontsLeftPane.Options["width"]).toEqual(2048); // number in FontsLeftPane.Options
     });
 
     it('reads options from UI', () => {
         const PROJ_NAME = "Test Project Name";
-        $(root).find("#txtProjectName").val(PROJ_NAME);
-        var options = FontsLeftPane.readOptions($(root));
+        $("#txtProjectName").val(PROJ_NAME);
+        var options = FontsLeftPane.readOptions();
         expect(options["name"]).toEqual(PROJ_NAME);
     });
 
     it('reads options from UI (else path)', () => {
         const PROJ_NAME = "Test Project Name";
         var $input = $("<input/>").val(1000);
-        $(root).append($input); // possible error? no id.
+        $root.append($input); // possible error? no id.
         var $button = $("<button/>").text("1234");
-        $(root).append($button); // possible error? no id.
+        $root.append($button); // possible error? no id.
         expect(() => {
-            FontsLeftPane.readOptions($(root));
+            FontsLeftPane.readOptions();
         }).not.toThrow();
     });
 
@@ -70,8 +70,8 @@ describe('FontsLeftPane', () => {
         const PROJ_NAME = "Test Project Name Two";
         var options = FontsLeftPane.copyOptions(FontsLeftPane.DefaultOptions);
         options["name"] = PROJ_NAME;
-        FontsLeftPane.writeOptions(options, $(root));
-        expect($(root).find("#txtProjectName").val()).toEqual(PROJ_NAME);
+        FontsLeftPane.writeOptions(options);
+        expect($("#txtProjectName").val()).toEqual(PROJ_NAME);
     });
 
     it('writes options to UI (else paths)', () => {
@@ -79,7 +79,7 @@ describe('FontsLeftPane', () => {
         var options = FontsLeftPane.copyOptions(FontsLeftPane.DefaultOptions);
         options["name"] = PROJ_NAME;
         FontsLeftPane.writeOptions(options); // uses FontsLeftPane.$root
-        expect($(root).find("#txtProjectName").val()).toEqual(PROJ_NAME);
+        expect($("#txtProjectName").val()).toEqual(PROJ_NAME);
         expect(() => {
             FontsLeftPane.writeOptions(undefined); // possible error? undefined collection.
             FontsLeftPane.writeOptions(null); // possible error? null collection.
