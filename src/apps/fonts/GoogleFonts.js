@@ -168,15 +168,18 @@ export class GoogleFonts {
 
             /* istanbul ignore else */
             if(callback) { callback(); }
-        }).fail((data) => {
-            let ex = undefined;
-            if(data && data.responseJSON && data.responseJSON.error && data.responseJSON.error.message) {
-                ex = data.responseJSON.error.message;
-            } else {
-                ex = data.statusText || data.statusCode;
-            }
-            ConsoleTab.error("Error loading font list.", ex);
-        });
+        }).fail(GoogleFonts.LoadFontListFail);
+    }
+
+    // TODO: extracted method for tests only. can't get $.get().fail to trigger with responseJSON, but it's expected? revisit.
+    static LoadFontListFail(data) {
+        let ex = undefined;
+        if(data && data.responseJSON && data.responseJSON.error && data.responseJSON.error.message) {
+            ex = data.responseJSON.error.message;
+        } else {
+            ex = data.statusText || data.statusCode;
+        }
+        ConsoleTab.error("Error loading font list.", ex);
     }
 
     static LoadFont(font, onlyDefault) {

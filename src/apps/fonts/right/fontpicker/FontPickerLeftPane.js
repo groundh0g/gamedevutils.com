@@ -217,6 +217,7 @@ class FontPickerLeftPane extends React.Component {
 
     static getOptionKeyFromControlId(id) {
         let key = id;
+        /* istanbul ignore else */
         if(id && id.length > 0) {
             key = id.replace(/ddlFontPicker|txtFontPicker/, "");
             key = key.charAt(0).toLowerCase() + key.slice(1);
@@ -245,6 +246,7 @@ class FontPickerLeftPane extends React.Component {
         $root.find("input").each((index, obj) => {
             let $obj = $(obj);
             let id = $obj.attr("id");
+            /* istanbul ignore else */
             if(id && id.substring(0,3) === 'txt') {
                 let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
                 let val = $obj.val().trim();
@@ -258,6 +260,7 @@ class FontPickerLeftPane extends React.Component {
         $root.find("button").each((index, obj) => {
             let $obj = $(obj);
             let id = $obj.attr("id");
+            /* istanbul ignore else */
             if(id && id.substring(0,3) === 'ddl') {
                 let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
                 let val = $obj.text().trim();
@@ -278,6 +281,7 @@ class FontPickerLeftPane extends React.Component {
             $root.find("input").each((index, obj) => {
                 let $obj = $(obj);
                 let id = $obj.attr("id");
+                /* istanbul ignore else */
                 if(id && id.substring(0,3) === 'txt') {
                     let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
                     let val = options[key];
@@ -290,6 +294,7 @@ class FontPickerLeftPane extends React.Component {
             $root.find("button").each((index, obj) => {
                 let $obj = $(obj);
                 let id = $obj.attr("id");
+                /* istanbul ignore else */
                 if(id && id.substring(0,3) === 'ddl') {
                     let key = FontPickerLeftPane.getOptionKeyFromControlId(id);
                     let val = options[key];

@@ -141,5 +141,45 @@ describe('FontPicker', () => {
         expect(GoogleFonts.FontList.items[0].family).toEqual('Lato');
     });
 
+    it('refreshes right pane on UI button click', () => {
+        const THE_FONT = {family:'Foo'};
+        let oldAdd = FontsTab.addFont;
+        FontsTab.addFont = jest.fn();
+        FontPickerRightPane.addFontListItem(THE_FONT);
+        expect($("#fontPickerRightPane").find("#divFontListItems").find("div.list-group-item").length).not.toEqual(0);
+
+        const oldOnChange = FontPickerLeftPane.OnChange;
+        FontPickerLeftPane.OnChange = jest.fn();
+        jest.useFakeTimers();
+
+        const $button = $('#cmdFontPickerRefresh');
+        ReactTestUtils.Simulate.click($button.get(0));
+        // immediately empties list, and list is repopulated on next UI refresh. test for empty list.
+        expect($("#fontPickerRightPane").find("#divFontListItems").find("div.list-group-item").length).toEqual(0);
+
+        jest.runAllTimers();
+        expect(FontPickerLeftPane.OnChange).toBeCalled();
+
+        FontsTab.addFont = oldAdd;
+        FontPickerLeftPane.OnChange = oldOnChange;
+        jest.useRealTimers();
+    });
+
+    it('populates font list after UI selection change', () => {
+        let oldPopulate = FontPicker.PopulateFontListItems;
+        FontPicker.PopulateFontListItems = jest.fn();
+        FontPickerLeftPane.Options['sortBy'] = 'family';
+        jest.useFakeTimers();
+
+        FontPicker.handleOptionsChanged('ddlFontPickerSortBy', 'sortBy');
+
+        expect(FontPicker.FilteredFontListItems).toEqual(undefined);
+        expect(GoogleFonts.FontList.items[0].family).toEqual('Lato');
+        jest.runAllTimers();
+        expect(FontPicker.PopulateFontListItems).toBeCalled();
+
+        FontPicker.PopulateFontListItems = oldPopulate;
+        jest.useRealTimers();
+    });
 });
 

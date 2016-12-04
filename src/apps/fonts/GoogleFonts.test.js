@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { GoogleFonts } from './GoogleFonts';
 import ConsoleTab from '../../widgets/ConsoleTab';
@@ -129,7 +128,7 @@ describe('GoogleFonts', () => {
         ConsoleTab.debug = oldDebug;
     });
 
-    it('fetches data', () => {
+    it('fetches data (success)', () => {
         let oldGet = $.get;
         let oldInfo = ConsoleTab.info;
         let mockGet = jest.fn((url, callback) => {
@@ -153,6 +152,37 @@ describe('GoogleFonts', () => {
         expect(mockGet).toBeCalled();
         expect(mockInfo).toBeCalled();
         // expect(mockCallback).toBeCalled();
+    });
+
+    it('fetches data (failure)', () => {
+        let oldGet = $.get;
+        let oldInfo = ConsoleTab.info;
+        let oldError = ConsoleTab.error;
+        let mockFail = jest.fn((args) => { GoogleFonts.LoadFontListFail({responseJSON: {error: {message: "foo"}}}); });
+        let mockGet = jest.fn((url, callback) => {
+            let p = new Promise((resolve, reject) => {
+                reject({responseJSON: {error: {message: "foo"}}});
+            }).then((data) => {
+                //callback(SampleData);
+            });
+            p.fail = mockFail;
+            return p;
+        });
+        let mockInfo = jest.fn(() => {});
+        let mockError = jest.fn(() => {});
+        $.get = mockGet;
+        ConsoleTab.info = mockInfo;
+        ConsoleTab.error = mockError;
+
+        GoogleFonts.LoadFontList();
+
+        $.get = oldGet;
+        ConsoleTab.info = oldInfo;
+        ConsoleTab.error = oldError;
+        expect(mockGet).toBeCalled();
+        expect(mockInfo).toBeCalled();
+        expect(mockError).toBeCalled();
+        expect(mockFail).toBeCalled();
     });
 
     // it('fetches data', () => {
