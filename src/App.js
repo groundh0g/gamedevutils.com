@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Home from './homepage/Home';
 import MainNavbar from './MainNavbar';
 import FontsApp from './apps/fonts/FontsApp';
 // import SheetsApp from './apps/sheets/SheetsApp';
@@ -59,9 +60,7 @@ class App extends React.Component {
                 return (
                     <div>
                         <MainNavbar />
-                        <div>
-                            ERROR: Unknown app, '{App.QueryParam['app']}'.
-                        </div>
+                        <Home />
                     </div>
                 );
         }

@@ -60,7 +60,7 @@ class FontPickerLeftPane extends React.Component {
 
                 <OptionDropdown
                     id="ddlFontPickerCategory"
-                    value={this.state.Options["category"]}
+                    defaultValue={this.state.Options["category"]}
                     fullWidth
                     onChange={(id, newValue, oldValue) => {FontPickerLeftPane.handleChange(id, newValue, oldValue);}}
                     tooltip="Filter the list of fonts to the selected category.">
@@ -168,8 +168,6 @@ class FontPickerLeftPane extends React.Component {
     static ResetOptions() {
         FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(FontPickerLeftPane.DefaultOptions);
 
-        // TODO: These feel like hacks. See why children aren't rendering on parent setState().
-        // FontPickerLeftPane.writeOptions(FontPickerLeftPane.Options);
         OptionDropdown.$instances["ddlFontPickerCategory"].setText(FontPickerLeftPane.Options["category"]);
         OptionDropdown.$instances["ddlFontPickerSuggestions"].setText(FontPickerLeftPane.Options["suggestions"]);
         OptionDropdown.$instances["ddlFontPickerSubset"].setText(FontPickerLeftPane.Options["subset"]);
@@ -178,7 +176,7 @@ class FontPickerLeftPane extends React.Component {
 
         GoogleFonts.SortFontList(FontPickerLeftPane.Options["sortBy"]);
 
-        FontPickerLeftPane.$instance.setState({});
+        FontPickerLeftPane.$instance.setState({ Options: FontPickerLeftPane.Options }); // redundant?
         FontPickerLeftPane.OnChange("txtFontPickerSearch", "search");
     }
 

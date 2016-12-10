@@ -1,15 +1,15 @@
 import React from 'react';
-import { DropdownButton, InputGroup, MenuItem } from 'react-bootstrap'
+import { Dropdown, MenuItem } from 'react-bootstrap'
 
 class OptionDropdown extends React.Component {
-    // TODO: Only used by FontPickerLeftPane to force redraw of children. Feel like a hack. Investigate.
     static $instances;
 
     constructor(props) {
         super(props);
+        let defaultValue = this.props.defaultValue || this.calcDefaultValue();
         this.state = {
-            text: undefined,
-            defaultValue: this.props.defaultValue || this.calcDefaultValue()
+            text: defaultValue,
+            // defaultValue: defaultValue
         };
 
         OptionDropdown.$instances = OptionDropdown.$instances || {};
@@ -45,24 +45,27 @@ class OptionDropdown extends React.Component {
 
     render() {
         return (
-            <DropdownButton
-                componentClass={InputGroup.Button}
-                style={this.props.fullWidth ? { width:"100%" } : { }}
+            <Dropdown
                 id={this.props.id}
+                style={this.props.fullWidth ? { width:"100%" } : { }}
                 ref={this.props.id}
-                title={this.state.text !== undefined ? this.state.text : this.state.defaultValue}
-                onSelect={ (key, e) => { this.handleSelect(key, e); }} >
-                {this.props.children.map((item, index) => {
-                    return (
-                        <MenuItem
-                            id={item.props.id}
-                            key={index}
-                            eventKey={this.props.id}
-                            onSelect={this.props.onSelect}
-                        >{item.props.children}{item.props.default ? " *" : ""}</MenuItem>
-                    );
-                })}
-            </DropdownButton>
+                onSelect={ (key, e) => { this.handleSelect(key, e); }}>
+                <Dropdown.Toggle style={this.props.fullWidth ? { width:"100%" } : { }}>
+                    {this.state.text}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    {this.props.children.map((item, index) => {
+                        return (
+                            <MenuItem
+                                id={item.props.id}
+                                key={index}
+                                eventKey={this.props.id}
+                                onSelect={this.props.onSelect}
+                            >{item.props.children}{item.props.default ? " *" : ""}</MenuItem>
+                        );
+                    })}
+                </Dropdown.Menu>
+            </Dropdown>
         );
     }
 }
