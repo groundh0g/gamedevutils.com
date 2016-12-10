@@ -168,6 +168,7 @@ class FontPickerLeftPane extends React.Component {
     static ResetOptions() {
         FontPickerLeftPane.Options = FontPickerLeftPane.copyOptions(FontPickerLeftPane.DefaultOptions);
 
+        // TODO: Feels like a hack. Want to have children redraw on parent setState().
         OptionDropdown.$instances["ddlFontPickerCategory"].setText(FontPickerLeftPane.Options["category"]);
         OptionDropdown.$instances["ddlFontPickerSuggestions"].setText(FontPickerLeftPane.Options["suggestions"]);
         OptionDropdown.$instances["ddlFontPickerSubset"].setText(FontPickerLeftPane.Options["subset"]);
@@ -176,7 +177,9 @@ class FontPickerLeftPane extends React.Component {
 
         GoogleFonts.SortFontList(FontPickerLeftPane.Options["sortBy"]);
 
-        FontPickerLeftPane.$instance.setState({ Options: FontPickerLeftPane.Options }); // redundant?
+        // let o = FontPickerLeftPane.copyOptions(FontPickerLeftPane.Options);
+        // o.foo = new Date();
+        // FontPickerLeftPane.$instance.setState({ Options: o }); // redundant?
         FontPickerLeftPane.OnChange("txtFontPickerSearch", "search");
     }
 

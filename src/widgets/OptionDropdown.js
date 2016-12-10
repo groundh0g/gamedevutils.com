@@ -49,9 +49,9 @@ class OptionDropdown extends React.Component {
                 id={this.props.id}
                 style={this.props.fullWidth ? { width:"100%" } : { }}
                 ref={this.props.id}
-                onSelect={ (key, e) => { this.handleSelect(key, e); }}>
-                <Dropdown.Toggle style={this.props.fullWidth ? { width:"100%" } : { }}>
-                    {this.state.text}
+                onSelect={ (key, e) => { this.handleSelect(key, e); }}
+            >
+                <Dropdown.Toggle title={this.state.text} style={this.props.fullWidth ? { width:"100%" } : { }}>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {this.props.children.map((item, index) => {
