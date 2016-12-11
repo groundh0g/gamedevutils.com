@@ -21,11 +21,13 @@
  */
 
 import React from 'react';
-import { Glyphicon, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 // import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 import './Home.css';
+import FontsFeatures from './features/FontsFeatures';
+import SheetsFeatures from './features/SheetsFeatures';
 
-class FontsApp extends React.Component {
+class Home extends React.Component {
     componentDidMount() {
     }
 
@@ -52,7 +54,7 @@ class FontsApp extends React.Component {
                                 memory and reducing CPU-to-GPU chatter.
                             </p>
                             <p>
-                                <Button bsStyle="primary">Show Features</Button>&nbsp;
+                                <Button bsStyle="primary" onClick={(e) => {SheetsFeatures.Show(); Home.blurButton(e);}}>Show Features</Button>&nbsp;
                                 <Button bsStyle="primary" onClick={() => {window.location='?app=sheets';}}>Go!</Button>
                             </p>
                         </td>
@@ -66,7 +68,7 @@ class FontsApp extends React.Component {
                                 more easily consumed by game engines.
                             </p>
                             <p>
-                                <Button bsStyle="primary">Show Features</Button>&nbsp;
+                                <Button bsStyle="primary" onClick={(e) => {FontsFeatures.Show(); Home.blurButton(e);}}>Show Features</Button>&nbsp;
                                 <Button bsStyle="primary" onClick={() => {window.location='?app=fonts';}}>Go!</Button>
                             </p>
                         </td>
@@ -200,88 +202,20 @@ class FontsApp extends React.Component {
                     <p>Thanks for Visiting!<br/>
                         — <a href="https://twitter.com/groundh0g">@groundh0g</a></p>
 
-                    <div id="popupFeatureSheets" className="modal fade">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 className="modal-title">Sprite Sheet Features</h4>
-                                </div>
-                                <div className="modal-body">
-                                    <h3>Current Features:</h3>
-                                    <div style={{paddingLeft:'10px'}}><p>
-                                        <Glyphicon glyph="check"/> Import web-friendly image formats<br/>
-                                        <Glyphicon glyph="check"/> <em>Extract animated GIF frames!</em><br/>
-                                        <Glyphicon glyph="check"/> Export images as PNG, GIF, or JPG<br/>
-                                        <Glyphicon glyph="check"/> Export data as XML or JSON<br/>
-                                        <Glyphicon glyph="check"/> Export data as CSS<br/>
-                                        <Glyphicon glyph="check"/> Trim &amp; crop unused pixels<br/>
-                                        <Glyphicon glyph="check"/> Heuristic mapping (chroma key)<br/>
-                                        <Glyphicon glyph="check"/> Basic rects (shelf) texture packing<br/>
-                                        <Glyphicon glyph="check"/> MaxRects texture packing<br/>
-                                        <Glyphicon glyph="check"/> Alpha (transparent) cleaning (aids compression)<br/>
-                                        <Glyphicon glyph="check"/> Debug mode (show sprite outlines)
-                                    </p></div>
-                                    <h3>Planned Features:</h3>
-                                    <div style={{paddingLeft:'10px'}}><p>
-                                        <Glyphicon glyph="wrench"/> Import non-web image formats<br/>
-                                        <Glyphicon glyph="wrench"/> Export optimized images<br/>
-                                        <Glyphicon glyph="wrench"/> Allow sprite rotate within sheet<br/>
-                                        <Glyphicon glyph="wrench"/> Alias duplicate sprites<br/>
-                                        <Glyphicon glyph="wrench"/> DropBox (et. al.) support
-                                    </p></div>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" data-dismiss="modal">Dismiss</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <FontsFeatures />
+                <SheetsFeatures />
 
-                    <div id="popupFeatureFonts" className="modal fade">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 className="modal-title">Sprite Fonts Features</h4>
-                                </div>
-                                <div className="modal-body">
-                                    <h3>Current Features:</h3>
-                                    <div style={{paddingLeft:'10px'}}><p>
-                                        <Glyphicon glyph="check"/> Select from a library of 2000+ fonts<br/>
-                                        <Glyphicon glyph="check"/> Export images as PNG, GIF, or JPG<br/>
-                                        <Glyphicon glyph="check"/> Export data as XML or JSON<br/>
-                                        <Glyphicon glyph="check"/> Trim &amp; crop unused pixels (smaller files)<br/>
-                                        <Glyphicon glyph="check"/> Kerning (deduced)<br/>
-                                        <Glyphicon glyph="check"/> Metrics (deduced)<br/>
-                                        <Glyphicon glyph="check"/> Specify included characters<br/>
-                                        <Glyphicon glyph="check"/> Filter included characters from sample text<br/>
-                                        <Glyphicon glyph="check"/> Debug mode (show font metrics as outlines)
-                                    </p></div>
-                                    <h3>Planned Features:</h3>
-                                    <div style={{paddingLeft:'10px'}}><p>
-                                        <Glyphicon glyph="wrench"/> Import your own TTF/OTF fonts<br/>
-                                        <Glyphicon glyph="wrench"/> Kerning (inspect font data)<br/>
-                                        <Glyphicon glyph="wrench"/> Metrics (inspect font data)<br/>
-                                        <Glyphicon glyph="wrench"/> Embedded bounds data in image (no separate atlas)<br/>
-                                        <Glyphicon glyph="wrench"/> Export optimized images<br/>
-                                        <Glyphicon glyph="wrench"/> Alias duplicate glyphs<br/>
-                                        <Glyphicon glyph="wrench"/> DropBox support
-                                    </p></div>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" data-dismiss="modal">Dismiss</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p>&nbsp;</p>
+                <p>&nbsp;</p>
                 
             </div>
         );
     }
+
+    static blurButton(e) {
+        e.target.blur();
+        e.target.parentElement.blur();
+    }
 }
 
 
-export default FontsApp;
+export default Home;

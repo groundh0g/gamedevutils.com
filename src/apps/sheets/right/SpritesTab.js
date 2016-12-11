@@ -62,7 +62,7 @@ class SpritesTab extends React.Component {
                         </ButtonGroup>
                         <ButtonGroup>
                             <Button onClick={(e) => {
-                                FontPicker.Show();
+                                //FontPicker.Show();
                                 SpritesTab.blurButton(e);
                             }} id="cmdFontAdd" title="Add a font."><Glyphicon glyph="plus" /></Button>
                             <Button onClick={(e) => {
