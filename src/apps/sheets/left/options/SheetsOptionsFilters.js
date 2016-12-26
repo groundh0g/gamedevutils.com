@@ -43,8 +43,8 @@ export class SheetsOptionsFilters extends React.Component {
                     <li default>No</li>
                 </OptionDropdown>
 
-                <OptionLabel text="Alias Glyphs" />
-                <OptionDropdown id="ddlProjectFilterAliasGlyphs" fullWidth onChange={SheetsLeftPane.handleChange}>
+                <OptionLabel text="Alias Sprites" />
+                <OptionDropdown id="ddlProjectFilterAliasSprites" fullWidth onChange={SheetsLeftPane.handleChange}>
                     <li>Yes</li>
                     <li default>No</li>
                 </OptionDropdown>

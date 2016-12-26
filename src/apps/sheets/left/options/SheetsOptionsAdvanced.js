@@ -24,36 +24,17 @@ import React from 'react';
 import { OptionLabel, OptionDropdown } from '../../../../widgets/Widgets';
 import { SheetsLeftPane } from '../SheetsLeftPane';
 
-export class SheetsOptionsAlgorithm extends React.Component {
+export class SheetsOptionsAdvanced extends React.Component {
 
     render() {
         return (
-            <div id="paneLeftAlgorithm">
-                <OptionLabel group text="Algorithm" />
+            <div id="paneLeftFilters">
+                <OptionLabel group text="Advanced" />
 
-                <OptionLabel text="Sprite Packer" />
-                <OptionDropdown id="ddlProjectSpritePacker" fullWidth onChange={SheetsLeftPane.handleChange}>
-                    <li>Basic</li>
-                    <li default>Encoded</li>
-                    <li>JoeRects</li>
-                </OptionDropdown>
-
-                <OptionLabel text="Sort By" />
-                <OptionDropdown id="ddlProjectSortBy" fullWidth onChange={SheetsLeftPane.handleChange}>
-                    <li>Area</li>
-                    <li default>Area Descending</li>
-                    <li>Height</li>
-                    <li>Height Descending</li>
-                    <li>Name</li>
-                    <li>Name Descending</li>
-                    <li>Width</li>
-                    <li>Width Descending</li>
-                </OptionDropdown>
-
-                <OptionLabel text="Allow Rotate" />
-                <OptionDropdown id="ddlProjectAllowRotate" fullWidth onChange={SheetsLeftPane.handleChange}>
-                    <li>Yes</li>
-                    <li default>No</li>
+                <OptionLabel text="Animated GIF" />
+                <OptionDropdown id="ddlProjectAnimatedGif" fullWidth onChange={SheetsLeftPane.handleChange}>
+                    <li default>Use First Frame</li>
+                    <li>Extract Frames</li>
                 </OptionDropdown>
             </div>
         );

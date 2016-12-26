@@ -25,3 +25,4 @@ export { SheetsOptionsDimensions as Dimensions } from './options/SheetsOptionsDi
 export { SheetsOptionsFilters as Filters } from './options/SheetsOptionsFilters';
 export { SheetsOptionsOutput as Output } from './options/SheetsOptionsOutput';
 export { SheetsOptionsPadding as Padding } from './options/SheetsOptionsPadding';
+export { SheetsOptionsAdvanced as Advanced } from './options/SheetsOptionsAdvanced';

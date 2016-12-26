@@ -48,6 +48,12 @@ export class SheetsOptionsOutput extends React.Component {
                     <li default>XML</li>
                 </OptionDropdown>
 
+                <OptionLabel text="Name in Sheet" />
+                <OptionDropdown id="ddlProjectNameInSheet" fullWidth onChange={SheetsLeftPane.handleChange}>
+                    <li default>Strip Extension</li>
+                    <li>Keep Extension</li>
+                </OptionDropdown>
+
                 <OptionLabel text="Zip Project" />
                 <OptionDropdown id="ddlProjectCompressProject" fullWidth onChange={SheetsLeftPane.handleChange}>
                     <li>Yes</li>

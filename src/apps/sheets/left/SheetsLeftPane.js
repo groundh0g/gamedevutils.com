@@ -47,6 +47,7 @@ export class SheetsLeftPane extends React.Component {
                 <SheetsOptions.Dimensions />
                 <SheetsOptions.Padding />
                 <SheetsOptions.Filters />
+                <SheetsOptions.Advanced />
 
                 <br/><br/><br/><br/>
             </div>
