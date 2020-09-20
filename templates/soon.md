@@ -6,4 +6,4 @@ This is the coming soon page.
 
 # **Latest News**
 
-{% include jaytch/snips/post-summary.liquid limit=5 showArchiveLink=false %}
+{% include jaytch/snips/posts.liquid limit=5 showArchiveLink=false %}
