@@ -6,7 +6,7 @@
 
 It's certainly not its features. The commercial offerings provide options and functionality that aren't (yet) supported in this suite of tools. The biggest benefits of this suite are that it's open source, and that it doesn't require you to install anything. Everything runs in your browser.
 
-###Everything Runs in Your Browser
+### Everything Runs in Your Browser
 
 > You read that right. Everything runs in your browser. The technology that drives GameDevUtils.com is vanilla HTML5 and JavaScript. That means that you can use the app from any operating system, using any modern web browser.
 >
